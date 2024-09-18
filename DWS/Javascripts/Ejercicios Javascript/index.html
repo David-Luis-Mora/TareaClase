@@ -15,19 +15,7 @@
         flex-direction: column
 
       }
-      /* .calculator {
-        background-color: #fff;
-        padding: 20px;
-        border-radius: 10px;
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-      }
-      .calculator input,
-      .calculator select,
-      .calculator button {
-        margin: 10px 0;
-        padding: 10px;
-        font-size: 1em;
-      } */
+
     </style>
   </head>
   <body>
@@ -60,21 +48,27 @@
       </form>
     </div>
 
-    <!-- <div class="calculator">
-      <h1>Calculadora</h1>
-      <form id="calcForm">
-        <input type="number" id="num1" placeholder="Número 1" required />
-        <input type="number" id="num2" placeholder="Número 2" required />
-        <select id="operation">
-          <option value="add">Suma</option>
-          <option value="subtract">Resta</option>
-          <option value="multiply">Multiplicación</option>
-          <option value="divide">División</option>
-        </select>
-        <button type="button" onclick="calculate()">Calcular</button>
+    <br>
+    <div class="ejercicio4"></div>
+      <h1>Ejercicio 4</h1>
+      <form>
+        <button type="button" onclick="calculo()">Mostrar Datos</button>
       </form>
-      <h2>Resultado: <span id="result"></span></h2>
-    </div> -->
+    </div>
+    <br>
+    <div class="ejercicio5"></div>
+      <h1>Ejercicio 5</h1>
+      <form>
+        <button type="button" onclick="monstrarFecha()">Mostrar Fecha</button>
+        <h4><span id="monstrarFecha"></span></h4>
+      </form>
+    </div>
+
+
+
+
+
+    
 
     <script>
       function controldevariable() {
@@ -84,9 +78,6 @@
         let resultado = "";
         let sumatotal = 0;
         let mensajeError = document.getElementById("mostrarmensaje");
-        // if (mensajeError.value !== "") {
-        //   mensajeError.innerHTML = "";
-        // }
 
         if (a < 0 || b < 0 || c < 0) {
           resultado = resultado + "\nError: Al menos una de las variables es negativa";
@@ -133,11 +124,6 @@
 
         let mensaje = document.getElementById("mensaje");
 
-        // if (mensaje.value !== "" ){
-
-        //   mensaje.innerHTML = ""
-
-        // }
 
         if (num === 0){
 
@@ -161,22 +147,55 @@
           result = result + "\n ¡¡Sólo sé contar de 0 a 6!!"
 
         }
-        
+
         mensaje.innerHTML = result;
         console.log(result);
-
 
       }
 
       function bucle() {
-        for (let i = 0, j = 20; i < 8 || j > 0; i++, j -= 3) {
+        for(let i = 0, j = 20; i < 8 || j > 0; i++, j -= 3){
           console.log(i, j);
         }
-        // for (let i= 0, j =20; i>  8 || j < 0; i++, j -=3  ){
-        //   console.log(i,j);
-        // }
+      }
+      
+      function calculo(){
+        let result = 1, arg1, arg2, res1, res2;
+        while (result > 0){
+          arg1 = Math.random() - 0.5;
+          if ( arg1 < 0){
+            continue
+          }else{
+            res1 = Math.sqrt(arg1);
+          }
+          arg2 = Math.random();
+          if(arg1 + arg2 === 0){
+            break;
+          }else{
+            res2 = res1/(arg1 + arg2);
+
+          }
+          result = res1 + res2;
+          console.log(result);
+        }
       }
 
+      function monstrarFecha(){
+        let fecha = new Date();
+
+        let dia = fecha.getDate();
+        let mes = fecha.getMonth();
+        let year = fecha.getFullYear();
+        let hora = fecha.getHours();
+        let minuts = fecha.getMinutes();
+        let segs = fecha.getSeconds();
+
+        mostrar = document.getElementById("monstrarFecha");
+        mostrar.innerHTML =`${dia}/${mes}/${year} ${hora}:${minuts}:${segs}   TimeZone`;
+
+        console.log(dia);
+
+      }
     </script>
   </body>
 </html>
