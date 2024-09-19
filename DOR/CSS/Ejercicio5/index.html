@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #titulo :first-child{
+            color:blue;
+        }
+        #titulo >h1+p{
+            color: red;
+            font-family: Arial, sans-serif;
+            
+        }
+        #titulo >h1+p+p{
+            color: rgb(255, 0, 115);
+            font-family: Arial, sans-serif;
+            
+        }
+        
+    </style>
+</head>
+<body>
+    <div id="titulo">
+        <h1>Selectores individuales</h1>
+        <p id="p1">Este es el primer parrafo</p>
+        <p id="p2">Este es el segundo parrafo</p>
+    </div>
+    
+    
+</body>
+</html>
