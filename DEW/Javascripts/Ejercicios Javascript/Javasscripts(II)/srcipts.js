@@ -12,5 +12,8 @@ function comprobarCaracter(){
 
     mostrar.innerHTML = `${cantidad}`
 
+    // let nombre = prompt("Por favor, introduce tu nombre:");
+
+
 
 }
