@@ -1,9 +1,11 @@
 <?php
 echo "<pre>";
-print_r ( $_POST);
+print_r($_GET);
 echo "<br>";
-print_r ( $_POST['usuario']);
-
-print_r($_FILES["Fichero"]['name']);
+print_r($GET['usuario']);
+// echo "<pre>";
+// print_r($_POST);
+// echo "<br>";
+// print_r($_POST['usuario']);
 
 

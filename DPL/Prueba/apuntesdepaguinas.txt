@@ -1,0 +1,5 @@
+https://ewebik.com/php-mysql/crear-base-de-datos-mysq-php
+
+
+
+http://localhost/test/Clase/TareaClase/DPL/Prueba/get-post.php
