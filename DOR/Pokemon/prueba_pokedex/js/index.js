@@ -44,6 +44,10 @@ function pushPokemon(pokemon) {
     pokemons.push(pokemon);
 }
 
+let comienzo = 1
+
+
+
 // Esta función se encarga de mostrar en el DOM los Pokemon que se han obtenido y almacenado en el array 
 const showPokedex = async () => {
     // Se obtiene una referencia al elemento con el ID pokedex en el DOM donde se insertarán las tarjetas de los Pokemon.
@@ -61,7 +65,8 @@ const showPokedex = async () => {
                 tipo2 = "";          
             aux++; 
         }
-        console.log( pokemons[i])
+        if (comienzo == 1) 
+        // console.log( pokemons[i])
         // Para cada Pokemon, se crea una tarjeta con imágenes (vista frontal y trasera), el nombre y los tipos
         // Esta estructura HTML se añade dinámicamente al contenedor pokedex
         pokedex.innerHTML +=    `<div class="card">
