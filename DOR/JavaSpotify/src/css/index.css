@@ -1,0 +1,14 @@
+.item{
+    border-style: solid;
+    width: 200px;
+    height: 200px;
+    /* display: flex; */
+    position: relative;
+    left: 50%;
+    background-color: darkgray;
+
+}
+/* .cv1{
+    background-image: url("../assets/images/cover1.jpg");
+    background-size: cover;
+} */
