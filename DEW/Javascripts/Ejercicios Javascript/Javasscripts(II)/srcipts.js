@@ -1,19 +1,18 @@
 function comprobarCaracter(){
 
-    texto = document.getElementById("texto").value;
+    event.preventDefault();
 
-    caracter = document.getElementById("caracter").value;
+    let texto = document.getElementById("texto").value;
 
-    cantidad = texto.split(caracter).length -1;
+    let caracter = document.getElementById("caracter").value;
 
-    mostrar = document.getElementById("cantidadCaracter");
+    let cantidad = texto.split(caracter).length -1;
 
-    console.log(cantidad)
+    console.log(cantidad);
 
-    mostrar.innerHTML = `${cantidad}`
+    let mostrar = document.getElementById("cantidadCaracter");
 
-    // let nombre = prompt("Por favor, introduce tu nombre:");
-
-
+    mostrar.innerHTML = `${cantidad}`;
 
 }
+
