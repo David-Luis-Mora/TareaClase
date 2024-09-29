@@ -11,7 +11,7 @@ function generarArrayAleatorio(numElementos = 10, valorMinimo = 100, valorMaximo
     
     return arrayAleatorio;
 }
-// console.log(generarArrayAleatorio(5));
+console.log(generarArrayAleatorio(5));
 
 
 
@@ -24,7 +24,7 @@ function ordenar(){
 
 }
 
-// console.log(ordenar());
+console.log(ordenar());
 
 // Ejercicio 3
 function desordenar(){
@@ -48,7 +48,7 @@ function desordenar(){
 
 }
 
-// console.log(desordenar());
+console.log(desordenar());
 
 
 //Ejercicio 4
@@ -98,7 +98,7 @@ function gestion(){
 
 }
 
-// gestion()
+gestion()
 
 // Ejercicio 5
 
@@ -120,15 +120,13 @@ function raizCuadrada(array){
     return arrayCuadrada;
 }
 
-// console.log(raizCuadrada(generarArrayAleatorio(20,60,100)));
+console.log(raizCuadrada(generarArrayAleatorio(20,60,100)));
 
 
 
 // Ejercicio 6
 
 function maxYMin(array){
-
-    console.log(array)
 
     const numMax = Math.max(...array);
     const numMin = Math.min(...array);
@@ -146,7 +144,7 @@ function maxYMin(array){
 }
 
 
-// console.log(maxYMin(generarArrayAleatorio(20,-100,100)));
+console.log(maxYMin(generarArrayAleatorio(20,-100,100)));
 
 
 //Ejercicio 7
@@ -158,8 +156,6 @@ function mostrar(array){
     let count = 0;
     let registro = [];
 
-    console.log(array)
-
     for(i= 0; i < array.length; i++){
 
         for(j= 0; j < registro.length; j++){
@@ -183,42 +179,40 @@ function mostrar(array){
     }
 
 }
-// mostrar(generarArrayAleatorio(50, -100, 100));
+mostrar(generarArrayAleatorio(50, -100, 100));
 
+
+// Ejercicio 8
 
 function mostrarCantidad(array){
 
     let count = 0;
     let registro = {};
 
-    console.log(array)
-
     for(i= 0; i < array.length; i++){
 
-        for(j= 0; j < registro.length; j++){
+        for(const  clave of Object.keys(registro)){
 
-            if  (registro[j] === array[i]){
-
-                count++;
-
+            if(clave == array[i]){
+                count = count +1;
             }
         }
-        if (count === 0){
-
-            registro.push(array[i]);
+        if (count == 0){
+            registro[array[i]] = 1;
             console.log(`Es la primera vez que aparece este numero: ${array[i]}`);
 
-
         }else{
+            for(let[clave,valor] of Object.entries(registro)){
+
+                if(clave == array[i]){
+                    registro[clave] = valor +1;
+                    console.log(`Este elemento ${array[i]} a aparecido: ${valor +1} veces`);
+                }
+            }
             count = 0;
-            console.log(`No es la primera vez que aparece este numero: ${array[i]}`);
         }
     }
-
 }
-
-
-
 mostrarCantidad(generarArrayAleatorio((50, -100, 100)));
 
 

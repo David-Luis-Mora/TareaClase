@@ -227,54 +227,34 @@ function evaluarText(texto) {
 console.log(evaluarText("HOLA MUNDO"));       
 
 
-// Pendiente "AJUSTAR"
 // Ejercicio 10
-// function reverso(text){
+function reverso(text){
 
-//     let textInvertido = "";
+    let textInvertido = "";
 
-//     for( i = text.length-1; i>=0; i--){
-//         textInvertido += text[i]
-//     }
+    let textModificado = text.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/\s+/g, "");
 
-//     console.log(textInvertido)
+
+
+
+
+    for( i = textModificado.length-1; i>=0; i--){
+        textInvertido += textModificado[i]
+    }
 
     
-//     if (text === textInvertido){
+    if (textModificado === textInvertido){
 
-//         console.log("Es palindromos")
+        console.log("Es palindromos")
 
-//     }else{
-//         console.log("No es palindromos")
-//     }
+    }else{
+        console.log("No es palindromos")
+    }
 
-// }
+}
 
-// reverso("Dábale arroz a la zorra el abad")
-//         // ANILINA
-
-
-// function esPalindromo(frase) {
-//     // Eliminar espacios y convertir a minúsculas
-//     const fraseLimpia = frase.replace(/[^a-zA-Z]/g, '').toLowerCase();
-    
-//     // Invertir la frase limpia
-//     const fraseInvertida = fraseLimpia.split('').reverse().join('');
-    
-//     // Comparar la frase limpia con la invertida
-//     if (fraseLimpia === fraseInvertida) {
-//         return true; // Es un palíndromo
-//     } else {
-//         return false; // No es un palíndromo
-//     }
-// }
-
-// // Ejemplos de uso
-// console.log(esPalindromo("Roma ni se conoce sin oro ni se conoce sin amor")); // true
-// console.log(esPalindromo("Amo la pacífica paloma")); // true
-// console.log(esPalindromo("No es un palíndromo")); // false
-// console.log(esPalindromo("Anita lava la tina")); // true
-// console.log(esPalindromo("La ruta natural")); // true
+reverso("Dábale arroz a la zorra el abad")
+reverso("ANILINA")
 
 
 
