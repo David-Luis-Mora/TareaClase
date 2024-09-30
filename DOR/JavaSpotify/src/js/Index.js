@@ -1,4 +1,6 @@
 import songs from '../assets/songs/*.mp3';
+import Player from './Player.js';
+
 
 Object.keys(songs);
 
@@ -18,4 +20,7 @@ for(var key of Object.keys(songs)){
 
 }
 
-// console.log(map)
+console.log(map)
+
+const player = new Player(map)
+
