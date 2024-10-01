@@ -1,4 +1,4 @@
-import Song, {play_song} from './Songs.js'
+import Song, {play_song} from './Song.js'
 
 export default class Player{
     constructor(map){
