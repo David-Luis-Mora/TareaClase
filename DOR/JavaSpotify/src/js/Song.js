@@ -4,7 +4,7 @@ export default class Song{
         
         this.element = document.querySelector(k_song);
         this.audio = new Audio(v_song);
-        // this.album = document.querySelector(c_song);
+        this.album = document.querySelector(c_song);
     }
 }
 

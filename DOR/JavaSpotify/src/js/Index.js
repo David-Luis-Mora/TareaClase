@@ -1,6 +1,6 @@
 import songs from '../assets/songs/*.mp3';
 import Player from './Player.js';
-
+// /home/daw/Escritorio/TareaClase/TareaClase/DOR/JavaSpotify/src/assets/songs
 
 
 Object.keys(songs);

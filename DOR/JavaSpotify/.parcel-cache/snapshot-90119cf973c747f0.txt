@@ -1,0 +1,19 @@
+18
+74/home/daw/Escritorio/TareaClase/TareaClase/DOR/JavaSpotify/src/js/Index.js1727879660921008887 0
+75/home/daw/Escritorio/TareaClase/TareaClase/DOR/JavaSpotify/src/js/Player.js1727879823557341842 0
+73/home/daw/Escritorio/TareaClase/TareaClase/DOR/JavaSpotify/src/js/Song.js1727879855701407777 0
+62/home/daw/Escritorio/TareaClase/TareaClase/DOR/JavaSpotify/src1727879234880144416 1
+85/home/daw/Escritorio/TareaClase/TareaClase/DOR/JavaSpotify/src/assets/songs/song3.mp31727283046239298695 0
+87/home/daw/Escritorio/TareaClase/TareaClase/DOR/JavaSpotify/src/assets/images/cover3.jpg1727462648882273804 0
+66/home/daw/Escritorio/TareaClase/TareaClase/DOR/JavaSpotify/src/css1727703212250022632 1
+73/home/daw/Escritorio/TareaClase/TareaClase/DOR/JavaSpotify/src/index.html1727879389152455840 0
+58/home/daw/Escritorio/TareaClase/TareaClase/DOR/JavaSpotify1727879285000245336 1
+87/home/daw/Escritorio/TareaClase/TareaClase/DOR/JavaSpotify/src/assets/images/cover2.jpg1727283046195316960 0
+69/home/daw/Escritorio/TareaClase/TareaClase/DOR/JavaSpotify/src/assets1727283046195316960 1
+75/home/daw/Escritorio/TareaClase/TareaClase/DOR/JavaSpotify/src/assets/songs1727283046219306998 1
+85/home/daw/Escritorio/TareaClase/TareaClase/DOR/JavaSpotify/src/assets/songs/song1.mp31727283046207311977 0
+65/home/daw/Escritorio/TareaClase/TareaClase/DOR/JavaSpotify/src/js1727879234880144416 1
+85/home/daw/Escritorio/TareaClase/TareaClase/DOR/JavaSpotify/src/assets/songs/song2.mp31727283046219306998 0
+76/home/daw/Escritorio/TareaClase/TareaClase/DOR/JavaSpotify/src/css/index.css1727703212250022632 0
+76/home/daw/Escritorio/TareaClase/TareaClase/DOR/JavaSpotify/src/assets/images1727462648882273804 1
+87/home/daw/Escritorio/TareaClase/TareaClase/DOR/JavaSpotify/src/assets/images/cover1.jpg1727283046195316960 0
