@@ -37,7 +37,7 @@
     align-items: center;
     position: absolute;
     z-index: -1;
-    transition: 200px; ;
+    transform: translateX(200px) rotate(360deg);
 
     
     
