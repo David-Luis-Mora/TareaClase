@@ -27,3 +27,75 @@
 .cv3 {
     background-image: url("../assets/images/cover3.jpg");
 }
+
+.vinyl{
+    width: 100%;
+    height: 100%;
+    background-color: black;
+    border-radius: 50%;
+    position: relative;
+    align-items: center;
+    position: absolute;
+    z-index: -1;
+    transition: 200px; ;
+
+    
+    
+}
+
+.detail{
+    width: 66%;
+    height: 66%;
+    background-color: rgb(203, 4, 243);
+    border-radius: 50%;
+    position: absolute;
+    margin-top: 15%;
+    margin-left: 15%;
+    /* z-index: 5; */
+
+    
+}
+.label{
+    width: 33%;
+    height: 33%;
+    background-color: rgb(252, 3, 210);
+    border-radius: 50%;
+    position: absolute;
+    margin-top: 33%;
+    margin-left: 33%;
+    /* z-index: 6; */
+
+}
+.hole{
+    width: 33%;
+    height: 33%;
+    background-color: rgb(248, 244, 244);
+    border-radius: 50%;
+    position: absolute;
+    margin-top: 33%;
+    margin-left: 33%;
+    /* z-index: 7; */
+
+
+}
+
+.flex{
+    display: flex;
+
+}
+
+.item-1{
+    z-index: 1;
+    
+
+}
+
+.item-2{
+    z-index: 2;
+
+}
+
+.item-3{
+    z-index: 3;
+
+}

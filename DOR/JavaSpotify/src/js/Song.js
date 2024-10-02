@@ -9,6 +9,7 @@ export default class Song{
 }
 
 export function play_song(song){
+    console.log(song)
     song.element.onclick = () => {
         if (song.audio.paused) {
             song.audio.play();
