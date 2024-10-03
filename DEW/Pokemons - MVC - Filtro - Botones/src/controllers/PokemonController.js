@@ -5,6 +5,7 @@ export class PokemonController {
   constructor() {
     this.model = new PokemonModel();
     this.view = new PokemonView();
+    
 
     this.pokemonsFiltered = [];
     this.newDesireList = [];
