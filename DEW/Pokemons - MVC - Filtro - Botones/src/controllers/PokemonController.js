@@ -32,6 +32,13 @@ export class PokemonController {
     this.filterType = document.querySelector("#filtroTipo");
     this.filterType.addEventListener("keyup", () => this.filteringPokemons());
 
+    this.filterWeight = document.querySelector("#filtroPeso");
+    this.filterWeight.addEventListener("keyup", () => this.filteringPokemons());
+
+    this.filterStats = document.querySelector("#filtroPoderTotal");
+    this.filterStats.addEventListener("keyup", () => this.filteringPokemons());
+
+
     // Bind Añadir a Lista de deseos
     document
       .querySelector("#btnAgnadeListaDeseo")
@@ -50,23 +57,61 @@ export class PokemonController {
 
   async filteringPokemons() {
     this.pokemonsFiltered = [];
+    let weight = this.filterWeight.value
+    let stats = this.filterStats.value;
+
+
     this.model.pokemons.forEach((pkm) => {
       this.safePokemon = false;
+      if(isNaN(weight)){
+        weight = 0
+      }else{
+        weight = parseFloat(weight)
+      }
 
-      if (pkm.pkm_type[0].type.name.includes(this.filterType.value)) {
+      if(isNaN(stats)){
+        stats = 0
+      }else{
+        stats = parseFloat(stats)
+
+      }
+
+      console.log(parseFloat(weight),parseFloat(stats))
+
+      if (pkm.pkm_type[0].type.name.includes(this.filterType.value)&& pkm.weight >= weight && pkm.attack >= stats){
         this.safePokemon = true;
       } else if (
         pkm.pkm_type.length > 1 &&
-        pkm.pkm_type[1].type.name.includes(this.filterType.value)
-      ) {
+        pkm.pkm_type[1].type.name.includes(this.filterType.value)&& pkm.weight >= weight && pkm.attack >= stats){
         this.safePokemon = true;
       }
       if (this.safePokemon) {
         this.pokemonsFiltered.push(pkm);
       }
+      
     });
     this.view.displayPokemons(this.pokemonsFiltered);
   }
+
+  // async filteringPokemons() {
+  //   this.pokemonsFiltered = [];
+  //   this.model.pokemons.forEach((pkm) => {
+  //     this.safePokemon = false;
+
+  //     if (pkm.pkm_type[0].type.name.includes(this.filterType.value)) {
+  //       this.safePokemon = true;
+  //     } else if (
+  //       pkm.pkm_type.length > 1 &&
+  //       pkm.pkm_type[1].type.name.includes(this.filterType.value)
+  //     ) {
+  //       this.safePokemon = true;
+  //     }
+  //     if (this.safePokemon) {
+  //       this.pokemonsFiltered.push(pkm);
+  //     }
+  //   });
+  //   this.view.displayPokemons(this.pokemonsFiltered);
+  // }
 
   mostrarListaDeseo() {
     //console.log(this.newDesireList);
