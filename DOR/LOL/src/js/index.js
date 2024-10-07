@@ -14,10 +14,10 @@ function loadpage(){
         const imageUrl = `https://ddragon.leagueoflegends.com/cdn/13.18.1/img/champion/${lista_champ[i].image.full}`;
         champCard.innerHTML = `
             <div class="cardChamp">
-            ${lista_champ[i].name}
+                <p>${lista_champ[i].name}</p>
             <img src="${imageUrl}" alt="${lista_champ[i].name}" 
             <br>
-            Historia: ${lista_champ[i].history}.<br>
+            <p>Historia: ${lista_champ[i].history}.</p>
             <div class="types">
             Tipo: ${lista_champ[i].tags}
             </div>`;
