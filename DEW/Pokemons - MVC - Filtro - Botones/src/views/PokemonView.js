@@ -41,13 +41,13 @@ export class PokemonView {
           ${types}
         </div>`;
 
-      /*  
-      // Añadir EventListener de click
-      pokemonCard.addEventListener("click", () => {
-        console.log(`Clicked on ${pokemon.name}`);
-        // Aquí puedes añadir más lógica para manejar el click
-      });
-*/
+
+      // // Añadir EventListener de click
+      // pokemonCard.addEventListener("click", () => {
+      //   console.log(`Clicked on ${pokemon.name}`);
+      //   // Aquí puedes añadir más lógica para manejar el click
+      // });
+
 
       this.pokedex.appendChild(pokemonCard);
     });

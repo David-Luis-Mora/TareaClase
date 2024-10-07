@@ -53,6 +53,7 @@ export class PokemonController {
 
   pokemonsClicked(cardId) {
     this.newDesireList.push(cardId);
+    console.log(`${cardId}`)
   }
 
   async filteringPokemons() {

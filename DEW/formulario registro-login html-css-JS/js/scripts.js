@@ -1,3 +1,6 @@
+// import conexion from './conexion.js'
+
+
 // Expresión regular para validar email
 const emailPattern = /.+@.+\..+/;
 
@@ -8,9 +11,7 @@ const passwordPattern =
 
 function validateLogin() {
   const username = document.getElementById("loginUsername").value;
-  const password = document.getElementById("loginPassword").value;
-
-  // Limito longitud del campo
+  const password = document.getElementById("loginPassword").value;  // Limito longitud del campo
   if (username.length >= 10) {
     alert("El nombre de usuario debe tener al menos 3 caracteres.");
     return false;
@@ -75,3 +76,52 @@ function validateRegister() {
 
   return true;
 }
+
+
+async function obtenerDocumento() {
+  const docRef = doc(db, "lista", "0"); // Reemplaza "0" con el ID correcto del documento
+  const docSnap = await getDoc(docRef);
+
+  if (docSnap.exists()) {
+    console.log("Datos del documento:", docSnap.data());
+  } else {
+    console.log("No se encontró el documento");
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+function Login(){
+  // if(validateLogin()){
+  //   // obtenerDocumento();
+  //   console.log("Login hecho")
+
+  // }else{
+  //   alert("El usuario no existe")
+  // }
+  console.log("Login hecho")
+
+  
+
+
+}
+
+
+
+
+
+
+
+
+
+
+const login = document.getElementById("login")
+login.addEventListener("click",Login())
