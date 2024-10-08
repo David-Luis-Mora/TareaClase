@@ -1,7 +1,6 @@
-from blog.models import Task
-
 # Create your views here.
 from django.shortcuts import render
+from tasks.models import Task
 
 
 def home(request):
