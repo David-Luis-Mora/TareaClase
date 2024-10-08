@@ -7,7 +7,7 @@ class Task(models.Model):
     title = models.CharField(max_length=100)
     description = models.TextField(max_length=300)
     done = models.BooleanField()
-    time_finish = models.DateTimeField()
+    time_finish = models.DateField()
 
     def __str__(self):
         return self.title

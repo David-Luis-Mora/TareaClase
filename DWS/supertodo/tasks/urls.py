@@ -1,9 +1,11 @@
-# from . import views
+# from django.contrib import admin
+from django.urls import path
 
-from django.contrib import admin
-from django.urls import include, path
+from . import views
+
+app_name = 'tasks'
 
 urlpatterns = [
-    path('tasks/', include('tasks.urls')),
-    path('admin/', admin.site.urls),
+    path('', views.home, name='home'),
+    # path('posts/<post_id>/', views.post_detail, name='post_detail'),
 ]
