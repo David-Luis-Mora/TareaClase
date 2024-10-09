@@ -8,6 +8,7 @@ class Task(models.Model):
     description = models.TextField(max_length=300)
     done = models.BooleanField()
     time_finish = models.DateField()
+    slug = models.SlugField(max_length=120, unique=True)
 
     def __str__(self):
         return self.title
