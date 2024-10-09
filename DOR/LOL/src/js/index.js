@@ -23,9 +23,11 @@ function showPopup(name, imageUrl, tags, infor_general) {
         </div>`;
         
     popup.style.display = "flex";
+    // popup.classList.add("show")
 
     document.getElementById("closePopup").addEventListener("click", function() {
         popup.style.display = "none";
+        // popup.classList.remove("show")
     });
 
     document.getElementById("botnDrPop").addEventListener("click", function(){
@@ -131,6 +133,7 @@ function loadpage(estate){
             champCard.classList.add("champ");
 
             const imageUrl = `https://ddragon.leagueoflegends.com/cdn/13.18.1/img/champion/${lista_champ[i].image.full}`;
+            console.log(imageUrl)
             champCard.innerHTML = `
                 <div class="cardChamp">
                     <p>${lista_champ[i].name}</p>
@@ -143,7 +146,7 @@ function loadpage(estate){
                 </div>
                 </div>`;
             
-            let imag_full = `https://ddragon.leagueoflegends.com/cdn/img/champion/splash/${lista_champ[i].name}_0.jpg`
+            let imag_full = `https://ddragon.leagueoflegends.com/cdn/img/champion/splash/${lista_champ[i].id}_0.jpg`
             // console.log(imag_full)
 
             
@@ -172,7 +175,9 @@ function loadpage(estate){
             if((page_count*8)-8<= i && i <(page_count*8)){
                 const champCard = document.createElement("div");
                 champCard.classList.add("champ");
+               
                 const imageUrl = `https://ddragon.leagueoflegends.com/cdn/13.18.1/img/champion/${lista_champ[i].image.full}`;
+                
                 champCard.innerHTML = `
                     <div class="cardChamp">
                         <p>${lista_champ[i].name}</p>
@@ -186,7 +191,7 @@ function loadpage(estate){
                 //     showPopup(lista_champ[i].name, imageUrl, lista_champ[i].tags);
                 // });
 
-                let imag_full = `https://ddragon.leagueoflegends.com/cdn/img/champion/splash/${lista_champ[i].name}_0.jpg`
+                let imag_full = `https://ddragon.leagueoflegends.com/cdn/img/champion/splash/${lista_champ[i].id}_0.jpg`
                 console.log(imag_full)
 
                 champCard.addEventListener("click", function() {
@@ -223,7 +228,7 @@ function loadpage(estate){
                 //     showPopup(lista_champ[i].name, imageUrl, lista_champ[i].tags);
                 // });
 
-                let imag_full = `https://ddragon.leagueoflegends.com/cdn/img/champion/splash/${lista_champ[i].name}_0.jpg`
+                let imag_full = `https://ddragon.leagueoflegends.com/cdn/img/champion/splash/${lista_champ[i].id}_0.jpg`
 
 
                 champCard.addEventListener("click", function() {
