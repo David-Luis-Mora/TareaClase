@@ -7,5 +7,5 @@ app_name = 'tasks'
 
 urlpatterns = [
     path('', views.home, name='task'),
-    path('task/<task_id>/', views.task_detail, name='task_detail'),
+    path('task/<task_slug>/', views.task_detail, name='task_detail'),
 ]

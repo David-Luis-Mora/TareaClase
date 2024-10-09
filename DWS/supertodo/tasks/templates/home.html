@@ -26,7 +26,7 @@
         <p>
           {{task.time_finish}}
         </p>
-        <p>Mas detalles...<a href="{% url 'tasks:task_detail' task.id %}">Tasks more....</a></p>
+        <p>Mas detalles...<a href="{% url 'tasks:task_detail' task.slug %}">Tasks more....</a></p>
         {% comment %} {{task.content|truncatewords:20}}  {% endcomment %}
       </div>
     {% endfor %}
