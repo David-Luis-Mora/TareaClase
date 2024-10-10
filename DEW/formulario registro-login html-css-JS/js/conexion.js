@@ -31,3 +31,10 @@ const db = getFirestore(app); // Inicializa Firestore
 
 
 
+function prueba(){
+  console.log("Desde conexion")
+
+}
+
+
+
