@@ -1,4 +1,4 @@
-
+/* 
 body {
     font-family: Arial, sans-serif;
     background-color: #f4f4f4;
@@ -8,7 +8,7 @@ body {
     justify-content: center;
     align-items: flex-start;
     height: 100vh;
-}
+} */
 
 
 div {
@@ -19,6 +19,7 @@ div {
     max-width: 400px;
     width: 100%;
     margin-top: 20px;
+    margin-left: 35%
 }
 
 
@@ -29,7 +30,9 @@ h1 {
 
 form {
     display: flex; 
-    flex-direction: column; 
+    flex-direction: column;
+    
+    
 }
 
 

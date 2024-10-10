@@ -4,9 +4,9 @@ body {
     background-color: #f4f4f4;
     margin: 0;
     padding: 0;
-    display: flex;
-    justify-content: center;
-    align-items: flex-start;
+    /* display: flex;
+    justify-content: center; */
+    /* align-items: flex-start; */
     height: 100vh;
 }
 
@@ -24,14 +24,14 @@ body {
 
 h1 {
     color: #333;
-    text-align: center;
+    /* text-align: center; */
 }
 
 
-form {
+/* form {
     display: flex;
     flex-direction: column;
-}
+} */
 
 label {
     margin-bottom: 10px;
@@ -79,8 +79,8 @@ a button {
     border-radius: 4px;
     cursor: pointer;
     font-size: 16px;
-    text-decoration: none;
-    text-align: center;
+    /* text-decoration: none; */
+    /* text-align: center; */
     display: block;
     margin: 20px auto 0;
 }
