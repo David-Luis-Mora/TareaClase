@@ -46,25 +46,23 @@ async function obtenerUsuario(id) {
 
 
 
-async function agregarUsuario(name,apellidos,edad,email,password){
-  console.log(name,apellidos,edad,email,password)
-  let a = {0: name,
-    1: apellidos,
-    2: edad,
-    3: email,
-    4: password,
-  }
+async function agregarUsuario(name, apellidos, edad, email, password) {
   try {
-    const docRef = await addDoc(collection(db, "Usuarios"), {
-      nombre: a
-
+    const docRef = await addDoc(collection(db, "Usuarios",), {
+      nombre: name,
+      apellidos: apellidos,
+      edad: edad,
+      email: email,
+      password: password,
     });
 
     console.log("Documento agregado con ID: ", docRef.id);
+    console.log((name, apellidos, edad, email, password))
   } catch (e) {
     console.error("Error agregando documento: ", e);
   }
 }
+
 
 
 
@@ -133,52 +131,56 @@ function validateLogin() {
 }
 
 function validateRegister() {
-  const name = document.getElementById("name").value;
-  const apellidos = document.getElementById("fullName").value;
-  const email = document.getElementById("email").value;
-  const edad = document.getElementById("age").value;
-  const password = document.getElementById("registerPassword").value;
-  const confirmPassword = document.getElementById("confirmPassword").value;
+  console.log("Validar registro")
+  // const name = document.getElementById("name").value;
+  // const apellidos = document.getElementById("fullName").value;
+  // const email = document.getElementById("email").value;
+  // const edad = document.getElementById("age").value;
+  // const password = document.getElementById("registerPassword").value;
+  // const confirmPassword = document.getElementById("confirmPassword").value;
 
   // Limito longitud del campo name
-  if (name.length >= 10) {
-    alert("El nombre es muy largo.");
-    return false;
-  }
+  // if (name.length >= 10) {
+  //   alert("El nombre es muy largo.");
+  //   return false;
+  // }
 
-  // Limito longitud del campo apellidos
-  if (apellidos.length >= 40) {
-    alert("La longitud del apellido es muy larga.");
-    return false;
-  }
+  // // Limito longitud del campo apellidos
+  // if (apellidos.length >= 40) {
+  //   alert("La longitud del apellido es muy larga.");
+  //   return false;
+  // }
 
-  // Limito longitud del campo edad
-  if (edad.length == 2) {
-    alert("La longitud de la edad no es correcta.");
-    return false;
-  }
+  // // Limito longitud del campo edad
+  // if (edad.length == 2) {
+  //   alert("La longitud de la edad no es correcta.");
+  //   return false;
+  // }
 
-  // Compruebo el formato del correo
-  if (!emailPattern.test(email)) {
-    alert("Por favor, introduce un correo electrónico válido.");
-    return false;
-  }
+  // // Compruebo el formato del correo
+  // if (!emailPattern.test(email)) {
+  //   alert("Por favor, introduce un correo electrónico válido.");
+  //   return false;
+  // }
 
-  // Compruebo el formato mínimo de la contraseña
-  if (!passwordPattern.test(password)) {
-    alert(
-      "La contraseña debe tener al menos 8 caracteres, incluir una letra y un número."
-    );
-    return false;
-  }
+  // // Compruebo el formato mínimo de la contraseña
+  // if (!passwordPattern.test(password)) {
+  //   alert(
+  //     "La contraseña debe tener al menos 8 caracteres, incluir una letra y un número."
+  //   );
+  //   return false;
+  // }
 
-  // Confirmo que ha escrito correctamente la contraseña
-  if (password !== confirmPassword) {
-    alert("Las contraseñas no coinciden.");
-    return false;
-  }
-
+  // // Confirmo que ha escrito correctamente la contraseña
+  // if (password !== confirmPassword) {
+  //   alert("Las contraseñas no coinciden.");
+  //   return false;
+  // }
+  console.log("Agregaria el usuario")
   agregarUsuario(name,apellidos,edad,email,password)
+  // setTimeout(() => {
+  //   // console.clear(); // Limpia la consola después de un segundo
+  // }, 1000000000);
 
   return true;
 }
@@ -198,18 +200,18 @@ async function obtenerDocumento() {
 
 
 
-// function prueba(){
-//   console.log("Desde conexion")
-//   if(validateRegister){
+function prueba() {
+  console.log("Verificacion de registro");
+  const registerUsername = document.getElementById("registerUsername").value; // Este es el campo que buscas
+  const apellidos = document.getElementById("fullName").value; // Asegúrate de que el id sea correcto
+  const email = document.getElementById("email").value;
+  const edad = document.getElementById("age").value;
+  const password = document.getElementById("registerPassword").value;
+  const confirmPassword = document.getElementById("confirmPassword").value;
 
-
-//   }
-
-// }
-
-
-
-
+  console.log("Valores de entrada:",typeof( registerUsername, apellidos, edad, email, password, confirmPassword));
+  agregarUsuario(registerUsername,apellidos,edad,email,password);
+}
 
 
 
@@ -239,12 +241,15 @@ function login(){
 }
 
 function register(){
+  event.preventDefault();
   console.log("Registro hecho")
-  if(validateRegister){
-    console.log("El registro es valido")
+  prueba()
+  // if(validateRegister){
+  //   console.log("El registro es valido")
+  //   agregarUsuario()
 
-  }
-  agregarUsuario()
+  // }
+
 
 
 }
