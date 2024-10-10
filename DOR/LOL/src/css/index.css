@@ -16,12 +16,13 @@ body{
 .titulo img{
     transition: transform 0.3s;
 }
-/* 
-.titulo:hover{
+ 
+/* .titulo:hover{
     transform: scale(1.1);
+    background-color: rgba(255, 255, 255, 0);
    
     
-} */
+}  */
 
 .titulo img {
     max-width:80%;         
@@ -31,6 +32,7 @@ body{
 .titulo img:hover{
     transform: scale(1.1);
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    background-color: rgba(255, 255, 255, 0);
 }
 
 #mostrar_imagenes {

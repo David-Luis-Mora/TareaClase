@@ -142,7 +142,8 @@ function loadpage(estate){
                 </div>
                 <br>
                 <div class="types">
-                    <p>Typs: ${lista_champ[i].tags}</p>
+                    <p>Types</p>
+                    <p>${lista_champ[i].tags}</p>
                 </div>
                 </div>`;
             
