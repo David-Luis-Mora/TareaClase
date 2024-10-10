@@ -1,6 +1,6 @@
 <?php
 
-$conn = mysqli_connect('localhost', 'David', 'root', 'prueba');
+$conn = mysqli_connect('localhost', 'root', '', 'prueba');
 
 if (!$conn) {
     die("Conexión fallida: " . mysqli_connect_error());
