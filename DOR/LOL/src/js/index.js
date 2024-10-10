@@ -11,16 +11,25 @@ function showPopup(name, imageUrl, tags, infor_general) {
     popup.innerHTML = `
         <div class="popup-content">
             <h2>${name}</h2>
-            <button id="botnIzPop"><</button>
-            <div>
-                <img src="${imageUrl}" alt="${name}">
-            </div>
+            <div class="count_imag">
+                <div class="btniz">
+                    <button id="botnIzPop"><</button>
+                </div>
+                <div class="img">
+                    <img src="${imageUrl}" alt="${name}">
+                </div>
             
-            <button id="botnDrPop">></button>
-                ${infor_general}
-            <p>Typs: ${tags}</p>
+                <div class="btnder">
+                    <button id="botnDrPop">></button>  
+                </div>
+            </div>
+            <p>${infor_general}</p>
             <button id="closePopup">Cerrar</button>
         </div>`;
+
+        
+        // <p>Typs: ${tags}</p>
+        // <button id="closePopup">Cerrar</button>
         
     popup.style.display = "flex";
     // popup.classList.add("show")
@@ -185,7 +194,9 @@ function loadpage(estate){
                     <img src="${imageUrl}" alt="${lista_champ[i].name}"
                     <br>
                     <div class="types">
-                        Typs: ${lista_champ[i].tags}
+                    <p>Types</p>
+                    <p>${lista_champ[i].tags}</p>
+                    </div>
                     </div>`;
 
                 // champCard.addEventListener("click", function() {
@@ -222,7 +233,9 @@ function loadpage(estate){
                     <img src="${imageUrl}" alt="${lista_champ[i].name}"
                     <br>
                     <div class="types">
-                    Typs: ${lista_champ[i].tags}
+                    <p>Types</p>
+                    <p>${lista_champ[i].tags}</p>
+                    </div>
                     </div>`;
 
                 // champCard.addEventListener("click", function() {
