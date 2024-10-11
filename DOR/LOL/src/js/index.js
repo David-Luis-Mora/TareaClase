@@ -130,7 +130,7 @@ function loadpage(estate){
     if (estate == 0){
 
         console.log("Load incial")
-        const page = document.getElementById("mostrar_imagenes");
+        const page = document.getElementById("card-grid");
         let count = 0;
         for(let i = 0; i <lista_champ.length; i++){
             if( count == 8 ){
@@ -138,22 +138,25 @@ function loadpage(estate){
             }else{
                 count +=1
             }
+            let formato_text = ""
+            if(lista_champ[i].tags.length == 2){
+                formato_text = `${lista_champ[i].tags[0]}/${lista_champ[i].tags[1]}`
+
+            }else{
+                formato_text = lista_champ[i].tags 
+
+            }
+            let nombre_mayuscula = `${lista_champ[i].name}`.toUpperCase()
             const champCard = document.createElement("div");
-            champCard.classList.add("champ");
+            champCard.classList.add("card");
 
             const imageUrl = `https://ddragon.leagueoflegends.com/cdn/13.18.1/img/champion/${lista_champ[i].image.full}`;
             console.log(imageUrl)
             champCard.innerHTML = `
-                <div class="cardChamp">
-                    <p>${lista_champ[i].name}</p>
-                <div>
+                    <h2>${nombre_mayuscula}</h2>
                     <img src="${imageUrl}" alt="${lista_champ[i].name}">
-                </div>
-                <br>
-                <div class="types">
-                    <p>Types</p>
-                    <p>${lista_champ[i].tags}</p>
-                </div>
+                    <p>TYPE</p>
+                    <p>${formato_text}</p>
                 </div>`;
             
             let imag_full = `https://ddragon.leagueoflegends.com/cdn/img/champion/splash/${lista_champ[i].id}_0.jpg`

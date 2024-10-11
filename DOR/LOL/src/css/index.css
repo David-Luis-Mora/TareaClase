@@ -1,233 +1,214 @@
-
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
 body{
-    background-color: #666;
-
-}
-
-.titulo{
-    display: flex;
-    justify-content: center; 
-    align-items: center;   
-    background-color: white;  
-
-}
-
-.titulo img{
-    transition: transform 0.3s;
-}
- 
-/* .titulo:hover{
-    transform: scale(1.1);
-    background-color: rgba(255, 255, 255, 0);
-   
-    
-}  */
-
-.titulo img {
-    max-width:80%;         
-    height: 70%;             
-}
-
-.titulo img:hover{
-    transform: scale(1.1);
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
-    background-color: rgba(255, 255, 255, 0);
-}
-
-#mostrar_imagenes {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    grid-gap: 30px;
-    margin: 40px auto 0;
-    height: 800px;
-    max-width: 1200px; 
-    margin: 0 auto; 
-    background-color: #666;
-    padding: 20px;
-    border-radius: 10px;
+    background-color: #091428 ;
 }
 
 
-.champ {
-    /* border: 1px solid #ccc;  */
-    padding: 15px;
-    border-radius: 8px; 
-    text-align: center; 
-    height: 200px;
-    display: flex;
-    flex-direction: column;
-}
+/* Diseño del titulo */
 
-.cardChamp:hover{
-    transform: scale(1.1);
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
-    background-color: #007bff ;
-
-}
-
-.cardChamp{
-    border: 3px solid #ccc;
+header{
     width: 100%;
-}
+    height: 30%;
+    /* margin-left: 30%; */
+    border: 10px solid #C89B3C;
+    background-color: #010A13;
+    border-radius: 10px;
+    box-sizing: border-box;
 
-.cardChamp img {
-    max-width: 100%;
-    height: auto;
-    display: block;
-    margin: 0 auto 10px; 
-}
-
-.cardChamp img:hover {
-    transform: scale(1.1);
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
 
 }
 
-.cardChamp>p{
-    font-size: 30px;
+.container {
+    width: 80%;
+    max-width: 1200px;
+    /* text-align: center; */
+}
+
+header img {
+    width: 400px;
     
-}   
-
-
-.types {
-    margin-top: 10px;
-    font-size: 150%;
-    color: #0e0d0d;
+    /* margin-bottom: 20px; */
+    color: #D4AF37;
+    margin-left: 39.5%;
+    margin-top: 1%;
+    /* border-radius: 20px; */
 }
 
 
-.pagination {
+/* Diseño de las cartas de los champ */
+.card {
+    border: 10px solid  #C89B3C ;
+    background-color: #F0E6D2;
+    color:  #32281E;
+    border-radius: 10px;
+    padding: 20px;
+    /* box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); */
     text-align: center;
+    width: 250px;
+    height: 325px;
+    /* position: absolute; */
+  
+    /* font-size: 20px; */
+    
+}
+
+.card h2{
+    font-size: 30px;
+    font-weight: bold; /* Negrita */
+    font-style: italic; /* Cursiva */
+    margin-bottom: 10%;
+       
+}
+
+.card p:first-of-type{
     margin-top: 20px;
+    font-size: 24px;
+    font-weight: bold;
+    
+    
+
 }
 
-.pagination button {
-    background-color: #007bff; 
-    color: white; 
-    border: none; 
-    padding: 10px 20px; 
-    margin: 5px;
-    font-size: 16px;
-    cursor: pointer;
-    border-radius: 5px; 
-    transition: background-color 0.3s ease, transform 0.2s ease;
-    width: 130px;
-    height: 80px;
+.card p:nth-of-type(2) {
+    margin-top: 15px;
+    font-size: 20px;
+
+    /* Estilos para la segunda etiqueta p */
 }
 
-.pagination button:hover {
-    background-color: #0056b3; 
-    transform: scale(1.05); 
+
+/* .card p{
+    font-size: 20px;
+    
+
+} */
+
+.card:hover{
+    background-color:#79D6FF ;
 }
 
-.pagination button:active {
-    transform: scale(0.95); 
+
+/* Formato de las columnas*/
+
+#card-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* 4 columnas de igual tamaño */
+    gap: 20px; /* Espacio entre las tarjetas */
+    justify-items: center; /* Centrar las tarjetas horizontalmente */
+    margin-top: 20px; /* Espacio entre el grid y otros elementos */
+    margin-left: 36%;
 }
 
-.pagination button:disabled {
-    background-color: #ccc; 
-    color: #666; 
-    cursor: not-allowed; 
-    opacity: 0.6; 
+
+/* Diseño de los botones */
+
+
+.buttons{
+    width: 100%;
+    height: 100%;
+    /* background-color: #79D6FF; */
+    margin-left: 29.2%;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    margin-top: 2%;
+    
 }
 
-#pageInfo {
-    display: inline-block;
-    font-size: 18px;
-    margin: 0 15px;
+.buttons button{
+    margin-left: 1.8%;
+    height: 50px;
+    width: 100px;
+    color: aliceblue;
+    background-color: #005A82;
+}
+
+.buttons button:hover{
+    background-color:  #0397AB ;
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* .card img {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 50%;
+    margin-bottom: 10px;
+}
+
+.card h2 {
+    margin-bottom: 10px;
+    font-size: 1.2rem;
     color: #333;
 }
 
-
-
-.popup {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
-    display: none;
-    justify-content: center;
-    align-items: center;
+.card p {
+    font-size: 1rem;
+    color: #333;
 }
 
-
-.popup-content {
-    background-color: white;
-    padding: 20px;
-    border-radius: 10px;
-    width: 300px;
-    /* text-align: center; */
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
-    width: 70%;
-    height: 90%;
-    border: 20px solid  rgb( 200, 155, 60)
+.buttons {
+    margin-top: 20px;
 }
 
-
-.popup-content>div>img{
-    width: 100px;
-    height: 100px;
+button {
+    background-color: #D4AF37;
+    color: #0A0E18;
+    border: none;
+    padding: 10px 20px;
+    margin: 0 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
 }
 
-#popup .popup-content h2{
-    width: 100%;
-    color: rgb(200, 170, 110);
-    text-shadow: #0e0d0d;
-    font-size: 50px;
-    text-align: center;
-}
-
-#botnIzPop{
-    position: absolute;
-    margin-left: 50%;
-    width: 33%;
-    height: 33%;
-}
-
-#botnDrPop{
-    position:absolute;
-}
-
-.count_imag{
-    width: 10%;
-    height: 10%;
-    background-color: aqua;
-}
-
-/* .count_imag div  {
-    position: absolute;
-    width: 30%;
-    height: 30%;
-    
-} */
-
-
-/* .popup-content div{
-    width: 50%;
-    height: 50%;
-} */
-
-
-/* #popup{
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
-    display: flex;
-    justify-content: center;
-    justify-items: center;
-}
-
-.popup.show{
-    display: flex;
-} */
-
-
-
-
-
+*/
+/* 
+button:hover {
+    background-color: #b2922d;
+}  */
