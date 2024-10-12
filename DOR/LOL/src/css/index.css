@@ -135,6 +135,156 @@ header img {
 
 }
 
+/*Edicion del pop*/
+
+.modal{
+    /* background-color: #79D6FF; */
+    width: 70%;
+    height: 30%;
+    position: absolute;
+    margin-bottom: 50%;
+}
+
+.championModal{
+    background-color: white;
+    width: 95%;
+    height: 80%;    
+    margin-left: 3%;
+    align-items: center; 
+    align-content: center;
+    border:  20px solid  #C89B3C ;
+    position: absolute;
+    bottom: 14.5%;
+    border-radius: 20px;
+    
+
+}
+.championModal img{
+    width: 40%;
+    height: 40%;
+    position: absolute;
+    top: 15%;
+    right: 30%;
+
+}
+
+#close{
+    position: absolute;
+    right:1.8%;
+    bottom:91% ;
+    width: 70px;
+    height: 50px;
+    font-size: 50px;
+    color: white;
+    background-color:  white ;
+    border: hidden;
+    border-radius: 10px;
+
+}
+
+#close:hover{
+    transform: scale(2,2);
+}
+
+#close img{
+    width: 80%;
+    height: 80%;
+    position: absolute;
+    right: 10%;
+}
+
+#namepop{
+    position: absolute;
+    right:300px;
+    width: 100px;
+    left: 38%;
+    top: 1%;
+    font-size: 100px;
+    color: #C89B3C ;
+    font-weight: bold; /* Negrita */
+    font-style: italic;
+
+}
+
+#prev{
+    width: 4%;
+    height: 7%;
+    position: absolute;
+    top: 270px ;
+    left: 23.4%;
+    z-index: 10;
+    border: hidden;
+    background-color: white;
+
+}
+
+
+/* #prev{
+    width: 4%;
+    height: 7%;
+    position: absolute;
+    top: 270px ;
+    left: 23.4%;
+    background-color: #C89B3C;
+    background-color: rgb(189, 186, 19);
+    border: hidden;
+    font-size: 70px;
+    padding-top: 0%;
+    border-top: 0%;
+    margin-top: 0%;
+    border-radius: 10px;
+} */
+
+#prev img{
+    width: 70%;
+    height: 70%;
+}
+
+#prev:hover{
+    transform: scale(2,2);
+    
+}
+
+#next{
+    width: 4%;
+    height: 7%;
+    position: absolute;
+    top: 270px ;
+    left: 74%;
+    z-index: 10;
+    border: hidden;
+    background-color: white;
+
+}
+
+#next:hover{
+    transform: scale(2,2);
+    
+}
+
+#next img{
+    width: 70%;
+    height: 70%;
+}
+
+.championModal p{
+    width: 90%;
+    height: 50%;
+    position: absolute;
+    top: 60%;
+    font-size: 50px;
+    align-items: center;
+    align-items: center;
+    margin-left: 5%;
+    color:  #463714;
+    
+}
+
+/* .sinbloque{
+    display: inline-block;
+
+} */
+
 
 
 

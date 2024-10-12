@@ -5,325 +5,176 @@ let cantidad = 0;
 let page_count = 1;
 
 function showPopup(name, imageUrl, tags, infor_general) {
-    console.log("Pop-up")
-    const popup = document.getElementById("popup");
-    console.log(imageUrl)
-    popup.innerHTML = `
-        <div class="popup-content">
-            <h2>${name}</h2>
-            <div class="count_imag">
-                <div class="btniz">
-                    <button id="botnIzPop"><</button>
-                </div>
-                <div class="img">
-                    <img src="${imageUrl}" alt="${name}">
-                </div>
-            
-                <div class="btnder">
-                    <button id="botnDrPop">></button>  
-                </div>
-            </div>
-            <p>${infor_general}</p>
-            <button id="closePopup">Cerrar</button>
-        </div>`;
+    const page = document.getElementById("card-grid");
+    const popup = document.getElementById("championModal");
+    const prueba = document.getElementsByClassName("container");
+    const previousContent = page.innerHTML;
+    console.log(prueba)
 
+    page.removeAttribute("id");
+    page.classList.add("championModal");
+
+    let nombre_mayuscula = name.toUpperCase();
+
+    // Oculta los botones
+    document.getElementById("btonIzquierd").style.visibility = "hidden";
+    document.getElementById("btonDerech").style.visibility = "hidden";
+
+    page.innerHTML = `
+        <button id="close"><img src="./img/x.png"></button>
+        <h2 id="namepop">${nombre_mayuscula}</h2>
+        <button id="prev"><img src="./img/flecha1.png"></button>
+        <img src="${imageUrl}" alt="${name}">
+        <button id="next"><img src="./img/flecha.png"></button>
+        <p>${infor_general}</p>
+    `;
+
+    popup.classList.add("show");
+
+    document.getElementById("close").addEventListener("click", function() {
+        popup.classList.remove("show");
         
-        // <p>Typs: ${tags}</p>
-        // <button id="closePopup">Cerrar</button>
         
-    popup.style.display = "flex";
-    // popup.classList.add("show")
+        page.innerHTML = previousContent;
+        page.id = "card-grid"; // Restaurar ID
+        page.classList.remove("championModal")
+        // let conter = document.getElementById("championModal")
+        // console.log(conter)
+        // conter.classList.remove("championModal")
+        // let conter_2 = document.getElementsByClassName("championModal")
+        // conter_2.innerHTML = conter
 
-    document.getElementById("closePopup").addEventListener("click", function() {
-        popup.style.display = "none";
-        // popup.classList.remove("show")
-    });
+        // Restaura la visibilidad de los botones
+        document.getElementById("btonIzquierd").style.visibility = "visible";
+        document.getElementById("btonDerech").style.visibility = "visible";
 
-    document.getElementById("botnDrPop").addEventListener("click", function(){
-
-        const popupImage = document.querySelector('.popup-content img');
-        let imageUrl = popupImage.getAttribute('src');
-
-        const regex = /_(\d+)\.jpg$/;
-        const match = imageUrl.match(regex);
-    
-        if (match) {
-            let currentNumber = parseInt(match[1], 10);
-            console.log("Número actual:", currentNumber);
-    
-            let newNumber = currentNumber + 1;
-            console.log("Nuevo número:", newNumber);
-    
-            let newImageUrl = imageUrl.replace(regex, `_${newNumber}.jpg`);
-
-            let img = new Image();
-            img.src = newImageUrl;
-
-            img.onload = function() {
-
-                popupImage.setAttribute('src', newImageUrl);
-                console.log("Imagen actualizada: ", newImageUrl);
-            };
-            
-            img.onerror = function() {
-
-                console.log("Imagen no encontrada:", newImageUrl);
-                alert("Imagen no encontrada, manteniendo la imagen actual.");
-            };
-
-
-        } else {
-            console.log("No se encontró un número en la URL.");
-        }
-
-
-
-    })
-    document.getElementById("botnIzPop").addEventListener("click", function(){
-
-        const popupImage = document.querySelector('.popup-content img');
-        let imageUrl = popupImage.getAttribute('src');
-
-        const regex = /_(\d+)\.jpg$/;
-        const match = imageUrl.match(regex);
-    
-        if (match) {
-            let currentNumber = parseInt(match[1], 10);
-            console.log("Número actual:", currentNumber);
-
-            let newNumber = currentNumber - 1;
-            console.log("Nuevo número:", newNumber);
-
-            let newImageUrl = imageUrl.replace(regex, `_${newNumber}.jpg`);
-
-            let img = new Image();
-            img.src = newImageUrl;
-
-            img.onload = function() {
-
-                popupImage.setAttribute('src', newImageUrl);
-                console.log("Imagen actualizada: ", newImageUrl);
-            };
-            
-            img.onerror = function() {
-
-                console.log("Imagen no encontrada:", newImageUrl);
-                alert("Imagen no encontrada, manteniendo la imagen actual.");
-            };
-            
-
-        } else {
-            console.log("No se encontró un número en la URL.");
-        }
-
-
-
-
-    });
-};
-
-
-
-
-
-function loadpage(estate){
-    if (estate == 0){
-
-        console.log("Load incial")
-        const page = document.getElementById("card-grid");
-        let count = 0;
-        for(let i = 0; i <lista_champ.length; i++){
-            if( count == 8 ){
-                break;
-            }else{
-                count +=1
-            }
-            let formato_text = ""
-            if(lista_champ[i].tags.length == 2){
-                formato_text = `${lista_champ[i].tags[0]}/${lista_champ[i].tags[1]}`
-
-            }else{
-                formato_text = lista_champ[i].tags 
-
-            }
-            let nombre_mayuscula = `${lista_champ[i].name}`.toUpperCase()
-            const champCard = document.createElement("div");
-            champCard.classList.add("card");
-
-            const imageUrl = `https://ddragon.leagueoflegends.com/cdn/13.18.1/img/champion/${lista_champ[i].image.full}`;
-            console.log(imageUrl)
-            champCard.innerHTML = `
-                    <h2>${nombre_mayuscula}</h2>
-                    <img src="${imageUrl}" alt="${lista_champ[i].name}">
-                    <p>TYPE</p>
-                    <p>${formato_text}</p>
-                </div>`;
-            
-            let imag_full = `https://ddragon.leagueoflegends.com/cdn/img/champion/splash/${lista_champ[i].id}_0.jpg`
-            // console.log(imag_full)
-
-            
-
-            
-
-
-
-            champCard.addEventListener("click", function() {
-                showPopup(lista_champ[i].name, imag_full, lista_champ[i].tags, lista_champ[i].history);
+        const all_cards = document.querySelectorAll('.card');
+        all_cards.forEach((card, index) => {
+            card.addEventListener('click', function() {
+                showPopup(lista_champ[index].name, 
+                          `https://ddragon.leagueoflegends.com/cdn/img/champion/splash/${lista_champ[index].id}_0.jpg`,
+                          lista_champ[index].tags,
+                          lista_champ[index].history);
             });
+        });
 
 
-            page.appendChild(champCard);
-        }
 
-    } else if(estate == 1){
-        if(page_count >= cantidad){
+    });
+
+    document.getElementById("btonDerech").addEventListener("click", function() {
+
+        const page = document.getElementById("card-grid");
+        num_page =
+
+        if(page_count){
             return true;
         }
-      
-        page_count += 1
-        const page = document.getElementById("card-grid");
-        page.innerHTML=""
-
-        for(let i = 0; i <lista_champ.length; i++){
-            if((page_count*8)-8<= i && i <(page_count*8)){
-                let formato_text = ""
-                if(lista_champ[i].tags.length == 2){
-                    formato_text = `${lista_champ[i].tags[0]}/${lista_champ[i].tags[1]}`
         
-                }else{
-                    formato_text = lista_champ[i].tags 
+        // popup.classList.remove("show");
         
-                }
-                let nombre_mayuscula = `${lista_champ[i].name}`.toUpperCase()
-                const champCard = document.createElement("div");
-                champCard.classList.add("card");
-               
-                const imageUrl = `https://ddragon.leagueoflegends.com/cdn/13.18.1/img/champion/${lista_champ[i].image.full}`;
+        
+        // page.innerHTML = previousContent;
+        // page.id = "card-grid"; // Restaurar ID
+        // page.classList.remove("championModal")
+        // // let conter = document.getElementById("championModal")
+        // // console.log(conter)
+        // // conter.classList.remove("championModal")
+        // // let conter_2 = document.getElementsByClassName("championModal")
+        // // conter_2.innerHTML = conter
 
-                champCard.innerHTML = `
-                        <h2>${nombre_mayuscula}</h2>
-                        <img src="${imageUrl}" alt="${lista_champ[i].name}">
-                        <p>TYPE</p>
-                        <p>${formato_text}</p>
-                    </div>`;
-                
-                // champCard.innerHTML = `
-                //     <div class="cardChamp">
-                //         <p>${lista_champ[i].name}</p>
-                //     <img src="${imageUrl}" alt="${lista_champ[i].name}"
-                //     <br>
-                //     <div class="types">
-                //     <p>Types</p>
-                //     <p>${lista_champ[i].tags}</p>
-                //     </div>
-                //     </div>`;
+        // // Restaura la visibilidad de los botones
+        // document.getElementById("btonIzquierd").style.visibility = "visible";
+        // document.getElementById("btonDerech").style.visibility = "visible";
 
-                // champCard.addEventListener("click", function() {
-                //     showPopup(lista_champ[i].name, imageUrl, lista_champ[i].tags);
-                // });
+        // const all_cards = document.querySelectorAll('.card');
+        // all_cards.forEach((card, index) => {
+        //     card.addEventListener('click', function() {
+        //         showPopup(lista_champ[index].name, 
+        //                   `https://ddragon.leagueoflegends.com/cdn/img/champion/splash/${lista_champ[index].id}_0.jpg`,
+        //                   lista_champ[index].tags,
+        //                   lista_champ[index].history);
+        //     });
+        // });
 
-                let imag_full = `https://ddragon.leagueoflegends.com/cdn/img/champion/splash/${lista_champ[i].id}_0.jpg`
-                console.log(imag_full)
 
-                champCard.addEventListener("click", function() {
-                    showPopup(lista_champ[i].name, imag_full, lista_champ[i].tags, lista_champ[i].history);
-                });
-                    
-                page.appendChild(champCard);
-            };
-        };
-    }else{
-        if(page_count <= 1){
-            return true;
-        }
-        page_count -= 1
-        console.log(page_count)
-        const page = document.getElementById("card-grid");
-        page.innerHTML=""    
-        for(let i = 0; i < lista_champ.length; i++){
-            if((page_count*8)-8<= i && i <(page_count*8)){
-                const champCard = document.createElement("div");
-                champCard.classList.add("card");
-                let formato_text = ""
-                if(lista_champ[i].tags.length == 2){
-                    formato_text = `${lista_champ[i].tags[0]}/${lista_champ[i].tags[1]}`
+
+    });
+
+
+
+
+
+        
+        // const all_card = document.getElementsByClassName('card');
+
+        // for (let i = 0; i < all_card.length; i++) {
+        //     elementos[i].addEventListener('click', showPopup )
+
+        // }
+        //     });
+
+        
+        // }
     
-                }else{
-                    formato_text = lista_champ[i].tags 
-    
-                }
-                let nombre_mayuscula = `${lista_champ[i].name}`.toUpperCase()
-                //   pokemonCard.id = `pokemon-${pokemon.id}`;
-                const imageUrl = `https://ddragon.leagueoflegends.com/cdn/13.18.1/img/champion/${lista_champ[i].image.full}`;
-                champCard.innerHTML = `
-                   <h2>${nombre_mayuscula}</h2>
-                    <img src="${imageUrl}" alt="${lista_champ[i].name}">
-                    <p>TYPE</p>
-                    <p>${formato_text}</p>
-                </div>`;
+}
+function loadpage(estate) {
+    const page = document.getElementById("card-grid");
+    page.innerHTML = ""; // Limpiar contenido antes de cargar nuevas cartas
 
-                // champCard.addEventListener("click", function() {
-                //     showPopup(lista_champ[i].name, imageUrl, lista_champ[i].tags);
-                // });
+    let startIndex = (page_count - 1) * 8;
+    let endIndex = Math.min(startIndex + 8, lista_champ.length);
 
-                let imag_full = `https://ddragon.leagueoflegends.com/cdn/img/champion/splash/${lista_champ[i].id}_0.jpg`
+    for (let i = startIndex; i < endIndex; i++) {
+        let formato_text = lista_champ[i].tags.join("/");
+        let nombre_mayuscula = lista_champ[i].name.toUpperCase();
+        const imageUrl = `https://ddragon.leagueoflegends.com/cdn/13.18.1/img/champion/${lista_champ[i].image.full}`;
+        let imag_full = `https://ddragon.leagueoflegends.com/cdn/img/champion/splash/${lista_champ[i].id}_0.jpg`;
 
+        const champCard = document.createElement("div");
+        champCard.classList.add("card");
+        champCard.innerHTML = `
+            <h2>${nombre_mayuscula}</h2>
+            <img src="${imageUrl}" alt="${lista_champ[i].name}">
+            <p>TYPE</p>
+            <p>${formato_text}</p>
+        `;
 
-                champCard.addEventListener("click", function() {
-                    showPopup(lista_champ[i].name, imag_full, lista_champ[i].tags, lista_champ[i].history);
-                });
+        champCard.addEventListener("click", function() {
+            showPopup(lista_champ[i].name, imag_full, lista_champ[i].tags, lista_champ[i].history);
+        });
 
-                page.appendChild(champCard);
-            }
-        }
+        page.appendChild(champCard);
     }
 }
 
-
 const obtenerChamp = async () => {
     await fetch("https://ddragon.leagueoflegends.com/cdn/13.18.1/data/es_ES/champion.json")
-        .then(function(result) {
-            return result.json();
-        })
-        .then(function(result) {
+        .then(result => result.json())
+        .then(result => {
             const champ_list = result.data;
-
             for (let champ in champ_list) {
                 let nuevoChamp = new Campeones(champ_list[champ]);
                 lista_champ.push(nuevoChamp);
             }
         });
 
-        cantidad = Math.ceil(lista_champ.length / 8);
-        console.log("Pagina Inical")
-        loadpage(0)
+    cantidad = Math.ceil(lista_champ.length / 8);
+    loadpage(1); // Carga la primera página de campeones
 }
 
-obtenerChamp()
+obtenerChamp();
 
+document.getElementById("btonDerech").addEventListener("click", function() {
+    if (page_count < cantidad) {
+        page_count++;
+        loadpage(page_count);
+    }
+});
 
-const btonDerech = document.getElementById("btonDerech");
-btonDerech.addEventListener("click", function(){
-    loadpage(1)
-})
-
-
-const btonIzquierd = document.getElementById("btonIzquierd")
-btonIzquierd.addEventListener("click", function(){
-    loadpage(-1)
-
-} )
-
-
-
-
-
-
-
-
-
-
-
-
-
+document.getElementById("btonIzquierd").addEventListener("click", function() {
+    if (page_count > 1) {
+        page_count--;
+        loadpage(page_count);
+    }
+});
