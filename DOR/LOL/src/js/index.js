@@ -180,27 +180,44 @@ function loadpage(estate){
         if(page_count >= cantidad){
             return true;
         }
+      
         page_count += 1
-        const page = document.getElementById("mostrar_imagenes");
+        const page = document.getElementById("card-grid");
         page.innerHTML=""
 
         for(let i = 0; i <lista_champ.length; i++){
             if((page_count*8)-8<= i && i <(page_count*8)){
+                let formato_text = ""
+                if(lista_champ[i].tags.length == 2){
+                    formato_text = `${lista_champ[i].tags[0]}/${lista_champ[i].tags[1]}`
+        
+                }else{
+                    formato_text = lista_champ[i].tags 
+        
+                }
+                let nombre_mayuscula = `${lista_champ[i].name}`.toUpperCase()
                 const champCard = document.createElement("div");
-                champCard.classList.add("champ");
+                champCard.classList.add("card");
                
                 const imageUrl = `https://ddragon.leagueoflegends.com/cdn/13.18.1/img/champion/${lista_champ[i].image.full}`;
-                
+
                 champCard.innerHTML = `
-                    <div class="cardChamp">
-                        <p>${lista_champ[i].name}</p>
-                    <img src="${imageUrl}" alt="${lista_champ[i].name}"
-                    <br>
-                    <div class="types">
-                    <p>Types</p>
-                    <p>${lista_champ[i].tags}</p>
-                    </div>
+                        <h2>${nombre_mayuscula}</h2>
+                        <img src="${imageUrl}" alt="${lista_champ[i].name}">
+                        <p>TYPE</p>
+                        <p>${formato_text}</p>
                     </div>`;
+                
+                // champCard.innerHTML = `
+                //     <div class="cardChamp">
+                //         <p>${lista_champ[i].name}</p>
+                //     <img src="${imageUrl}" alt="${lista_champ[i].name}"
+                //     <br>
+                //     <div class="types">
+                //     <p>Types</p>
+                //     <p>${lista_champ[i].tags}</p>
+                //     </div>
+                //     </div>`;
 
                 // champCard.addEventListener("click", function() {
                 //     showPopup(lista_champ[i].name, imageUrl, lista_champ[i].tags);
@@ -222,24 +239,29 @@ function loadpage(estate){
         }
         page_count -= 1
         console.log(page_count)
-        const page = document.getElementById("mostrar_imagenes");
+        const page = document.getElementById("card-grid");
         page.innerHTML=""    
         for(let i = 0; i < lista_champ.length; i++){
             if((page_count*8)-8<= i && i <(page_count*8)){
                 const champCard = document.createElement("div");
-                champCard.classList.add("champ");
+                champCard.classList.add("card");
+                let formato_text = ""
+                if(lista_champ[i].tags.length == 2){
+                    formato_text = `${lista_champ[i].tags[0]}/${lista_champ[i].tags[1]}`
+    
+                }else{
+                    formato_text = lista_champ[i].tags 
+    
+                }
+                let nombre_mayuscula = `${lista_champ[i].name}`.toUpperCase()
                 //   pokemonCard.id = `pokemon-${pokemon.id}`;
                 const imageUrl = `https://ddragon.leagueoflegends.com/cdn/13.18.1/img/champion/${lista_champ[i].image.full}`;
                 champCard.innerHTML = `
-                    <div class="cardChamp">
-                        <p>${lista_champ[i].name}</p>
-                    <img src="${imageUrl}" alt="${lista_champ[i].name}"
-                    <br>
-                    <div class="types">
-                    <p>Types</p>
-                    <p>${lista_champ[i].tags}</p>
-                    </div>
-                    </div>`;
+                   <h2>${nombre_mayuscula}</h2>
+                    <img src="${imageUrl}" alt="${lista_champ[i].name}">
+                    <p>TYPE</p>
+                    <p>${formato_text}</p>
+                </div>`;
 
                 // champCard.addEventListener("click", function() {
                 //     showPopup(lista_champ[i].name, imageUrl, lista_champ[i].tags);
