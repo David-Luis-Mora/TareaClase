@@ -3,124 +3,120 @@ import Campeones from './Campeones.js';
 let lista_champ = [];
 let cantidad = 0;
 let page_count = 1;
+let skinIndex = 0; // Índice de skin
+let selectedChampionId = null; // ID del campeón seleccionado
 
-function showPopup(name, imageUrl, tags, infor_general) {
+// Función para obtener los detalles de un campeón específico
+async function getChampionDetails(championId) {
+    const url = `https://ddragon.leagueoflegends.com/cdn/13.18.1/data/es_ES/champion/${championId}.json`;
+    const response = await fetch(url);
+    const data = await response.json();
+    return data.data[championId]; // Devuelve solo los datos del campeón específico
+}
+
+// Función para mostrar el popup
+function showPopup(name, imageUrl, tags, infor_general, id) {
+    // console.log(name, imageUrl, tags, infor_general, id)
     const page = document.getElementById("card-grid");
     const popup = document.getElementById("championModal");
-    const prueba = document.getElementsByClassName("container");
     const previousContent = page.innerHTML;
-    console.log(prueba)
+    // console.log("Primera vez que entra al pop")
+    // console.log(previousContent)
+
+    selectedChampionId = id; // Guardar el ID del campeón seleccionado
+
+    // Oculta los botones de navegación
+    document.getElementById("btonIzquierd").style.visibility = "hidden";
+    document.getElementById("btonDerech").style.visibility = "hidden";
 
     page.removeAttribute("id");
     page.classList.add("championModal");
 
     let nombre_mayuscula = name.toUpperCase();
 
-    // Oculta los botones
-    document.getElementById("btonIzquierd").style.visibility = "hidden";
-    document.getElementById("btonDerech").style.visibility = "hidden";
-
     page.innerHTML = `
         <button id="close"><img src="./img/x.png"></button>
         <h2 id="namepop">${nombre_mayuscula}</h2>
-        <button id="prev"><img src="./img/flecha1.png"></button>
-        <img src="${imageUrl}" alt="${name}">
+        <button id="prev"><img  src="./img/flecha1.png"></button>
+        <img id="champion-image" id="champion-image" src="${imageUrl}" alt="${name}">
         <button id="next"><img src="./img/flecha.png"></button>
         <p>${infor_general}</p>
     `;
 
     popup.classList.add("show");
 
+    // Evento de cerrar el popup
     document.getElementById("close").addEventListener("click", function() {
         popup.classList.remove("show");
-        
-        
+        // console.log("Primera vez que sale del pop")
+        // console.log(previousContent)
+        // Restaurar el contenido original del card-grid
         page.innerHTML = previousContent;
-        page.id = "card-grid"; // Restaurar ID
-        page.classList.remove("championModal")
-        // let conter = document.getElementById("championModal")
-        // console.log(conter)
-        // conter.classList.remove("championModal")
-        // let conter_2 = document.getElementsByClassName("championModal")
-        // conter_2.innerHTML = conter
+        page.id = "card-grid"; // Restaurar el ID del contenedor
+        page.classList.remove("championModal");
 
-        // Restaura la visibilidad de los botones
+        // Restaurar la visibilidad de los botones de navegación
         document.getElementById("btonIzquierd").style.visibility = "visible";
         document.getElementById("btonDerech").style.visibility = "visible";
 
+        // Volver a asignar los eventos de las cartas después de cerrar el popup
         const all_cards = document.querySelectorAll('.card');
+        // console.log(all_cards.values())
+        
         all_cards.forEach((card, index) => {
+            // console.log(card, index)
+            let cambiado = true;
             card.addEventListener('click', function() {
+                console.log("Esto en el bucle")
+                if(cambiado){
+                    if(page_count != 1){
+                        cambiado = false
+                        index = ((page_count * 8) -8) + index
+                        console.log("Entro por el if")
+                    }else{
+                        cambiado = false
+    
+                    }
+
+                }
+               
+                console.log(index,page_count)
                 showPopup(lista_champ[index].name, 
                           `https://ddragon.leagueoflegends.com/cdn/img/champion/splash/${lista_champ[index].id}_0.jpg`,
                           lista_champ[index].tags,
-                          lista_champ[index].history);
+                          lista_champ[index].history, lista_champ[index].id);
             });
         });
-
-
-
     });
 
-    document.getElementById("btonDerech").addEventListener("click", function() {
+    // Cargar las skins del campeón
+    getChampionDetails(id).then(championDetails => {
+        const skins = championDetails.skins;
+        const totalSkins = skins.length;
 
-        const page = document.getElementById("card-grid");
-        num_page =
+        // Cambiar a la skin anterior
+        document.getElementById("prev").addEventListener("click", function() {
+            skinIndex = (skinIndex - 1 + totalSkins) % totalSkins;  // Circular hacia atrás
+            const skin = skins[skinIndex];
+            const newImageUrl = `https://ddragon.leagueoflegends.com/cdn/img/champion/splash/${id}_${skin.num}.jpg`;
+            document.getElementById("champion-image").src = newImageUrl;
+        });
 
-        if(page_count){
-            return true;
-        }
-        
-        // popup.classList.remove("show");
-        
-        
-        // page.innerHTML = previousContent;
-        // page.id = "card-grid"; // Restaurar ID
-        // page.classList.remove("championModal")
-        // // let conter = document.getElementById("championModal")
-        // // console.log(conter)
-        // // conter.classList.remove("championModal")
-        // // let conter_2 = document.getElementsByClassName("championModal")
-        // // conter_2.innerHTML = conter
-
-        // // Restaura la visibilidad de los botones
-        // document.getElementById("btonIzquierd").style.visibility = "visible";
-        // document.getElementById("btonDerech").style.visibility = "visible";
-
-        // const all_cards = document.querySelectorAll('.card');
-        // all_cards.forEach((card, index) => {
-        //     card.addEventListener('click', function() {
-        //         showPopup(lista_champ[index].name, 
-        //                   `https://ddragon.leagueoflegends.com/cdn/img/champion/splash/${lista_champ[index].id}_0.jpg`,
-        //                   lista_champ[index].tags,
-        //                   lista_champ[index].history);
-        //     });
-        // });
-
-
-
+        // Cambiar a la siguiente skin
+        document.getElementById("next").addEventListener("click", function() {
+            skinIndex = (skinIndex + 1) % totalSkins;  // Circular hacia adelante
+            const skin = skins[skinIndex];
+            const newImageUrl = `https://ddragon.leagueoflegends.com/cdn/img/champion/splash/${id}_${skin.num}.jpg`;
+            // console.log(newImageUrl)
+            document.getElementById("champion-image").src = newImageUrl;
+        });
     });
-
-
-
-
-
-        
-        // const all_card = document.getElementsByClassName('card');
-
-        // for (let i = 0; i < all_card.length; i++) {
-        //     elementos[i].addEventListener('click', showPopup )
-
-        // }
-        //     });
-
-        
-        // }
-    
 }
-function loadpage(estate) {
+
+// Función para cargar la página con las tarjetas de campeones
+function loadpage() {
     const page = document.getElementById("card-grid");
-    page.innerHTML = ""; // Limpiar contenido antes de cargar nuevas cartas
+    page.innerHTML = ""; // Limpiar el contenido actual
 
     let startIndex = (page_count - 1) * 8;
     let endIndex = Math.min(startIndex + 8, lista_champ.length);
@@ -140,14 +136,16 @@ function loadpage(estate) {
             <p>${formato_text}</p>
         `;
 
+        // Evento de clic para abrir el popup
         champCard.addEventListener("click", function() {
-            showPopup(lista_champ[i].name, imag_full, lista_champ[i].tags, lista_champ[i].history);
+            showPopup(lista_champ[i].name, imag_full, lista_champ[i].tags, lista_champ[i].history, lista_champ[i].id);
         });
 
         page.appendChild(champCard);
     }
 }
 
+// Función para obtener la lista de campeones
 const obtenerChamp = async () => {
     await fetch("https://ddragon.leagueoflegends.com/cdn/13.18.1/data/es_ES/champion.json")
         .then(result => result.json())
@@ -160,21 +158,22 @@ const obtenerChamp = async () => {
         });
 
     cantidad = Math.ceil(lista_champ.length / 8);
-    loadpage(1); // Carga la primera página de campeones
+    loadpage(); // Cargar la primera página
 }
 
 obtenerChamp();
 
+// Botones de paginación
 document.getElementById("btonDerech").addEventListener("click", function() {
     if (page_count < cantidad) {
         page_count++;
-        loadpage(page_count);
+        loadpage();
     }
 });
 
 document.getElementById("btonIzquierd").addEventListener("click", function() {
     if (page_count > 1) {
         page_count--;
-        loadpage(page_count);
+        loadpage();
     }
 });
