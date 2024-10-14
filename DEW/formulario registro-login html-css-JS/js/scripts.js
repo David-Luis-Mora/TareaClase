@@ -29,7 +29,7 @@ import {
   addDoc,
   getDoc,
   getDocs,
-  sett,
+  setDoc,
 } from "https://www.gstatic.com/firebasejs/10.13.2/firebase-firestore.js";
 const db = getFirestore(app); // Inicializa Firestore
 
@@ -52,6 +52,8 @@ async function agregarUsuario(name, apellidos, edad, email, password) {
     email: email,
     password: password,
   };
+
+  // db.collection("Usuarios").doc(`${email}`).set(data);
 
   await setDoc(doc(db, "Usuarios", `${email}`), data);
   // try {
