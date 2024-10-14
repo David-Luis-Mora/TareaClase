@@ -38,9 +38,11 @@ async function obtenerUsuario(id) {
   const docSnap = await getDoc(docRef);
 
   if (docSnap.exists()) {
-    console.log("Datos del documento:", docSnap.data());
+    // console.log("Datos del documento:", docSnap.data());
+    return true;
   } else {
-    console.log("No se encontró el documento");
+    // console.log("No se encontró el documento");
+    return false;
   }
 }
 
@@ -169,8 +171,14 @@ function prueba() {
   const password = document.getElementById("registerPassword").value;
   const confirmPassword = document.getElementById("confirmPassword").value;
 
-  if (obtenerUsuario())
+  console.log("Mandado la informacion");
+
+  if (obtenerUsuario(email) != true()) {
     agregarUsuario(registerUsername, apellidos, edad, email, password);
+    console.log("Se ha agregado el usuario");
+  } else {
+    console.log("El usuario ya existe");
+  }
 }
 
 function login() {
