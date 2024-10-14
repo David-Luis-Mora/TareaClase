@@ -10,7 +10,7 @@ def home(request):
     print('Hola estoy en el home')
     return render(
         request,
-        'home.html',
+        'tasks/home.html',
         {'num_tasks': num_tasks, 'tasks': tasks},
     )
 
@@ -19,7 +19,7 @@ def task_detail(request, task_slug):
     # print(f'Tiene sentido que {post_id}')
     task = Task.objects.get(slug=task_slug)
     # print(f'Tiene sentido que {post}')
-    return render(request, 'task_detail.html', dict(task=task))
+    return render(request, 'tasks/task_detail.html', dict(task=task))
 
 
 # def index(request):
