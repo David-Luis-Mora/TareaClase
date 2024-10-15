@@ -34,7 +34,7 @@ import {
 const db = getFirestore(app); // Inicializa Firestore
 
 async function obtenerUsuario(id) {
-  const docRef = doc(db, "Usuarios", id); // Reemplaza "0" con el ID correcto del documento
+  const docRef = doc(db, "Usuarios", id);
   const docSnap = await getDoc(docRef);
 
   if (docSnap.exists()) {
@@ -46,23 +46,26 @@ async function obtenerUsuario(id) {
   }
 }
 
-async function agregarUsuario(name, apellidos, edad, email, password) {
+  async function agregarUsuario(registerUsername,name, apellidos,email, edad,ciudad ,password) {
   const data = {
+    // nombreusuario:registerUsername, 
     nombre: name,
     apellidos: apellidos,
-    edad: edad,
     email: email,
+    edad: edad,
+    // ciudad:ciudad,
     password: password,
   };
 
   // db.collection("Usuarios").doc(`${email}`).set(data);
 
   await setDoc(doc(db, "Usuarios", `${email}`), data);
+  console.log("Registro hecho")
   // try {
-  //   const docRef = await sett(doc(db, "Usuarios", `${email}`), {});
+  //   const docRef = await setDoc(doc(db, "Usuarios", `${email}`), data);;
 
   //   console.log("Documento agregado con ID: ", docRef.id);
-  //   console.log((name, apellidos, edad, email, password));
+  //   console.log((egisterUsername,name, apellidos,email, edad,ciudad ,password));
   // } catch (e) {
   //   console.error("Error agregando documento: ", e);
   // }
@@ -74,7 +77,7 @@ const emailPattern = /.+@.+\..+/;
 // Expresión regular de contraseña que acepte al menos una letra mayúscula,
 // un número, un símbolo y una longitud mínima de 8 caracteres
 const passwordPattern =
-  /^(?=.*[A-Za-z])(?=.*[A-Z])(?=.*\\d)(?=.*[!@#$%^&*])[A-Za-z\\d!@#$%^&*]{8,}$/;
+  /^(?=.*[A-Za-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*])[A-Za-z\d!@#$%^&*]{8,}$/;
 
 function validateLogin() {
   prueba();
@@ -134,6 +137,7 @@ function validateRegister(name,apellidos,email,edad,password,confirmPassword) {
     alert("Por favor, introduce un correo electrónico válido.");
     return false;
   }
+  console.log(password)
 
   // Compruebo el formato mínimo de la contraseña
   if (!passwordPattern.test(password)) {
@@ -169,21 +173,20 @@ function prueba() {
   const ciudad = document.getElementById("city").value;
   const password = document.getElementById("registerPassword").value;
   const confirmPassword = document.getElementById("confirmPassword").value;
-  console.log(name)
-  console.log("prueba")
+  // console.log(name)
+  // console.log("prueba")
   // console.log(registerUsername,name, apellidos,email, edad,ciudad ,password,confirmPassword);
 
-
+  console.log(obtenerUsuario(email))
   if(validateRegister(name,apellidos,email,edad,password,confirmPassword)){
     if (obtenerUsuario(email) == false) {
-      agregarUsuario(registerUsername,name, apellidos,email, edad,ciudad ,password,confirmPassword);
-      console.log("Se ha agregado el usuario");
+      agregarUsuario(registerUsername,name, apellidos,email, edad,ciudad ,password);
+      console.log("Se ha agregado el nuevo usuario");
       alert("Registro exitoso")
     } else {
       console.log("El usuario ya existe");
       alert("Ya el usuario esta registrado")
     }
-
   }else{
     console.log("Hay algun dado que esta mal el formato")
   }
