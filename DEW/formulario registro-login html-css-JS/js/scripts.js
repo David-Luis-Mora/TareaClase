@@ -38,10 +38,10 @@ async function obtenerUsuario(id) {
   const docSnap = await getDoc(docRef);
 
   if (docSnap.exists()) {
-    // console.log("Datos del documento:", docSnap.data());
+    console.log("Datos del documento:", docSnap.data());
     return true;
   } else {
-    // console.log("No se encontró el documento");
+    console.log("No se encontró el documento");
     return false;
   }
 }
@@ -96,7 +96,7 @@ function validateLogin() {
   return true;
 }
 
-function validateRegister() {
+function validateRegister(name,apellidos,email,edad,password,confirmPassword) {
   console.log("Validar registro");
   // const name = document.getElementById("name").value;
   // const apellidos = document.getElementById("fullName").value;
@@ -105,44 +105,52 @@ function validateRegister() {
   // const password = document.getElementById("registerPassword").value;
   // const confirmPassword = document.getElementById("confirmPassword").value;
 
+  
+
   // Limito longitud del campo name
-  // if (name.length >= 10) {
-  //   alert("El nombre es muy largo.");
-  //   return false;
-  // }
+  if (name.length >= 10) {
+    console.log("")
+    alert("El nombre es muy largo.");
+    return false;
+  }
 
-  // // Limito longitud del campo apellidos
-  // if (apellidos.length >= 40) {
-  //   alert("La longitud del apellido es muy larga.");
-  //   return false;
-  // }
+  // Limito longitud del campo apellidos
+  if (apellidos.length >= 40) {
+    console.log("")
+    alert("La longitud del apellido es muy larga.");
+    return false;
+  }
 
-  // // Limito longitud del campo edad
-  // if (edad.length == 2) {
-  //   alert("La longitud de la edad no es correcta.");
-  //   return false;
-  // }
+  // Limito longitud del campo edad
+  if (edad.length >3) {
+    console.log("")
+    alert("La longitud de la edad no es correcta.");
+    return false;
+  }
 
-  // // Compruebo el formato del correo
-  // if (!emailPattern.test(email)) {
-  //   alert("Por favor, introduce un correo electrónico válido.");
-  //   return false;
-  // }
+  // Compruebo el formato del correo
+  if (!emailPattern.test(email)) {
+    console.log("")
+    alert("Por favor, introduce un correo electrónico válido.");
+    return false;
+  }
 
-  // // Compruebo el formato mínimo de la contraseña
-  // if (!passwordPattern.test(password)) {
-  //   alert(
-  //     "La contraseña debe tener al menos 8 caracteres, incluir una letra y un número."
-  //   );
-  //   return false;
-  // }
+  // Compruebo el formato mínimo de la contraseña
+  if (!passwordPattern.test(password)) {
+    console.log("")
+    alert(
+      "La contraseña debe tener al menos 8 caracteres, incluir una letra y un número."
+    );
+    return false;
+  }
 
-  // // Confirmo que ha escrito correctamente la contraseña
-  // if (password !== confirmPassword) {
-  //   alert("Las contraseñas no coinciden.");
-  //   return false;
-  // }
-  // console.log("Agregaria el usuario")
+  // Confirmo que ha escrito correctamente la contraseña
+  if (password !== confirmPassword) {
+    console.log("")
+    alert("Las contraseñas no coinciden.");
+    return false;
+  }
+  console.log("Agregaria el usuario")
   // agregarUsuario(name,apellidos,edad,email,password)
   // setTimeout(() => {
   //   // console.clear(); // Limpia la consola después de un segundo
@@ -151,34 +159,35 @@ function validateRegister() {
   return true;
 }
 
-async function obtenerDocumento() {
-  const docRef = doc(db, "lista", "0"); // Reemplaza "0" con el ID correcto del documento
-  const docSnap = await getDoc(docRef);
-
-  if (docSnap.exists()) {
-    console.log("Datos del documento:", docSnap.data());
-  } else {
-    console.log("No se encontró el documento");
-  }
-}
 
 function prueba() {
-  console.log("Verificacion de registro");
-  const registerUsername = document.getElementById("registerUsername").value; // Este es el campo que buscas
-  const apellidos = document.getElementById("fullName").value; // Asegúrate de que el id sea correcto
+  const registerUsername = document.getElementById("registerUsername").value;
+  const name = document.getElementById("name").value;
+  const apellidos = document.getElementById("fullName").value;
   const email = document.getElementById("email").value;
   const edad = document.getElementById("age").value;
+  const ciudad = document.getElementById("city").value;
   const password = document.getElementById("registerPassword").value;
   const confirmPassword = document.getElementById("confirmPassword").value;
+  console.log(name)
+  console.log("prueba")
+  // console.log(registerUsername,name, apellidos,email, edad,ciudad ,password,confirmPassword);
 
-  console.log("Mandado la informacion");
 
-  if (obtenerUsuario(email) != true()) {
-    agregarUsuario(registerUsername, apellidos, edad, email, password);
-    console.log("Se ha agregado el usuario");
-  } else {
-    console.log("El usuario ya existe");
+  if(validateRegister(name,apellidos,email,edad,password,confirmPassword)){
+    if (obtenerUsuario(email) == false) {
+      agregarUsuario(registerUsername,name, apellidos,email, edad,ciudad ,password,confirmPassword);
+      console.log("Se ha agregado el usuario");
+      alert("Registro exitoso")
+    } else {
+      console.log("El usuario ya existe");
+      alert("Ya el usuario esta registrado")
+    }
+
+  }else{
+    console.log("Hay algun dado que esta mal el formato")
   }
+  
 }
 
 function login() {
