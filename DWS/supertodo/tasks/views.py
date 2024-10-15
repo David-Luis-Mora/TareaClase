@@ -1,7 +1,10 @@
 # Create your views here.
-from django.shortcuts import render
+from django.shortcuts import redirect, render
+from django.utils.text import slugify
 
 from tasks.models import Task
+
+from .forms import AddTaskForm
 
 
 def home(request):
@@ -20,6 +23,22 @@ def task_detail(request, task_slug):
     task = Task.objects.get(slug=task_slug)
     # print(f'Tiene sentido que {post}')
     return render(request, 'tasks/task_detail.html', dict(task=task))
+
+
+def add_task(request):
+    if request.method == 'POST':
+        if (task := AddTaskForm(request.POST)).is_valid():
+            task = task.save(commit=False)
+            task.slug = slugify(task.title)
+            task.save()
+            return redirect('tasks:home')
+
+    else:
+        print('Funciona')
+        # print(reques)
+        task = AddTaskForm()
+
+    return render(request, 'tasks/add_task.html', dict(task=task))
 
 
 # def index(request):
