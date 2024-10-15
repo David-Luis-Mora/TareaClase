@@ -38,7 +38,7 @@ def add_task(request):
         # print(reques)
         task = AddTaskForm()
 
-    return render(request, 'tasks/add_task.html', dict(task=task))
+    return render(request, 'tasks/add_task.html', dict(form=task))
 
 
 # def index(request):
