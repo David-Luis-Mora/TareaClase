@@ -1,13 +1,14 @@
-// import conexion from './conexion.js'
-
-// Ejecutar esto primero antes de ver la pagina
-// npm install -g live-server
-// live-server
-
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.13.2/firebase-app.js";
-// TODO: Add SDKs for Firebase products that you want to use
-// https://firebase.google.com/docs/web/setup#available-libraries
+import {
+  getFirestore,
+  collection,
+  doc,
+  addDoc,
+  getDoc,
+  getDocs,
+  setDoc,
+} from "https://www.gstatic.com/firebasejs/10.13.2/firebase-firestore.js";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
@@ -21,16 +22,6 @@ const firebaseConfig = {
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
-
-import {
-  getFirestore,
-  collection,
-  doc,
-  addDoc,
-  getDoc,
-  getDocs,
-  setDoc,
-} from "https://www.gstatic.com/firebasejs/10.13.2/firebase-firestore.js";
 const db = getFirestore(app); // Inicializa Firestore
 
 async function obtenerUsuario(id) {
@@ -46,125 +37,78 @@ async function obtenerUsuario(id) {
   }
 }
 
-  async function agregarUsuario(registerUsername,name, apellidos,email, edad,ciudad ,password) {
+async function agregarUsuario(registerUsername, name, apellidos, email, edad, ciudad, password) {
   const data = {
-    // nombreusuario:registerUsername, 
+    nombreUsuario : registerUsername,
     nombre: name,
     apellidos: apellidos,
     email: email,
     edad: edad,
-    // ciudad:ciudad,
+    ciudad : ciudad,
     password: password,
+    favoritos: [],
+    comprado: [],
   };
 
-  // db.collection("Usuarios").doc(`${email}`).set(data);
-
   await setDoc(doc(db, "Usuarios", `${email}`), data);
-  console.log("Registro hecho")
-  // try {
-  //   const docRef = await setDoc(doc(db, "Usuarios", `${email}`), data);;
-
-  //   console.log("Documento agregado con ID: ", docRef.id);
-  //   console.log((egisterUsername,name, apellidos,email, edad,ciudad ,password));
-  // } catch (e) {
-  //   console.error("Error agregando documento: ", e);
-  // }
+  console.log("Registro hecho");
 }
 
-// Expresión regular para validar email
 const emailPattern = /.+@.+\..+/;
-
-// Expresión regular de contraseña que acepte al menos una letra mayúscula,
-// un número, un símbolo y una longitud mínima de 8 caracteres
-const passwordPattern =
-  /^(?=.*[A-Za-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*])[A-Za-z\d!@#$%^&*]{8,}$/;
+const passwordPattern = /^(?=.*[A-Za-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*])[A-Za-z\d!@#$%^&*]{8,}$/;
 
 function validateLogin() {
-  prueba();
   const username = document.getElementById("loginUsername").value;
-  const password = document.getElementById("loginPassword").value; // Limito longitud del campo
-  if (username.length >= 10) {
+  const password = document.getElementById("loginPassword").value;
+
+  if (username.length < 3) {
     alert("El nombre de usuario debe tener al menos 3 caracteres.");
     return false;
   }
 
-  // Compruebo el formato mínimo de la contraseña
   if (!passwordPattern.test(password)) {
-    alert(
-      "La contraseña debe tener al menos 8 caracteres, incluir una letra, al menos una mayúscula, un símbolo y un número."
-    );
+    alert("La contraseña debe tener al menos 8 caracteres, incluir una letra, al menos una mayúscula, un símbolo y un número.");
     return false;
   }
 
   return true;
 }
 
-function validateRegister(name,apellidos,email,edad,password,confirmPassword) {
-  console.log("Validar registro");
-  // const name = document.getElementById("name").value;
-  // const apellidos = document.getElementById("fullName").value;
-  // const email = document.getElementById("email").value;
-  // const edad = document.getElementById("age").value;
-  // const password = document.getElementById("registerPassword").value;
-  // const confirmPassword = document.getElementById("confirmPassword").value;
-
-  
-
-  // Limito longitud del campo name
+function validateRegister(name, apellidos, email, edad, password, confirmPassword) {
   if (name.length >= 10) {
-    console.log("")
     alert("El nombre es muy largo.");
     return false;
   }
 
-  // Limito longitud del campo apellidos
   if (apellidos.length >= 40) {
-    console.log("")
     alert("La longitud del apellido es muy larga.");
     return false;
   }
 
-  // Limito longitud del campo edad
-  if (edad.length >3) {
-    console.log("")
+  if (edad.length > 3) {
     alert("La longitud de la edad no es correcta.");
     return false;
   }
 
-  // Compruebo el formato del correo
   if (!emailPattern.test(email)) {
-    console.log("")
     alert("Por favor, introduce un correo electrónico válido.");
     return false;
   }
-  console.log(password)
 
-  // Compruebo el formato mínimo de la contraseña
   if (!passwordPattern.test(password)) {
-    console.log("")
-    alert(
-      "La contraseña debe tener al menos 8 caracteres, incluir una letra y un número."
-    );
+    alert("La contraseña debe tener al menos 8 caracteres, incluir una letra y un número.");
     return false;
   }
 
-  // Confirmo que ha escrito correctamente la contraseña
   if (password !== confirmPassword) {
-    console.log("")
     alert("Las contraseñas no coinciden.");
     return false;
   }
-  console.log("Agregaria el usuario")
-  // agregarUsuario(name,apellidos,edad,email,password)
-  // setTimeout(() => {
-  //   // console.clear(); // Limpia la consola después de un segundo
-  // }, 1000000000);
 
   return true;
 }
 
-
-function prueba() {
+async function ckeck() {
   const registerUsername = document.getElementById("registerUsername").value;
   const name = document.getElementById("name").value;
   const apellidos = document.getElementById("fullName").value;
@@ -173,51 +117,42 @@ function prueba() {
   const ciudad = document.getElementById("city").value;
   const password = document.getElementById("registerPassword").value;
   const confirmPassword = document.getElementById("confirmPassword").value;
-  // console.log(name)
-  // console.log("prueba")
-  // console.log(registerUsername,name, apellidos,email, edad,ciudad ,password,confirmPassword);
 
-  console.log(obtenerUsuario(email))
-  if(validateRegister(name,apellidos,email,edad,password,confirmPassword)){
-    if (obtenerUsuario(email) == false) {
-      agregarUsuario(registerUsername,name, apellidos,email, edad,ciudad ,password);
-      console.log("Se ha agregado el nuevo usuario");
-      alert("Registro exitoso")
+  if (validateRegister(name, apellidos, email, edad, password, confirmPassword)) {
+    const usuarioExiste = await obtenerUsuario(email); // Espera el resultado
+
+    if (!usuarioExiste) {
+      await agregarUsuario(registerUsername, name, apellidos, email, edad, ciudad, password);
+      alert("Registro exitoso");
     } else {
-      console.log("El usuario ya existe");
-      alert("Ya el usuario esta registrado")
+      alert("Ya el usuario está registrado");
     }
-  }else{
-    console.log("Hay algun dado que esta mal el formato")
-  }
-  
-}
-
-function login() {
-  // if(validateLogin()){
-  //   // obtenerDocumento();
-  //   console.log("Login hecho")
-
-  // }else{
-  //   alert("El usuario no existe")
-  // }
-  console.log("Login hecho");
-  if (validateLogin) {
-    console.log("Login aceptado");
-    let a = "b";
-    obtenerUsuario(a);
+  } else {
+    alert("Hay algún dato que está mal el formato");
   }
 }
 
-function register() {
+
+
+// function login() {
+//   if (validateLogin()) {
+//     console.log("Login aceptado");
+//     const username = document.getElementById("loginUsername").value;
+//     obtenerUsuario(username);
+//   } else {
+//     alert("El usuario no existe");
+//   }
+// }
+
+function register(event) {
   event.preventDefault();
-  console.log("Registro hecho");
-  prueba();
-  // if(validateRegister){
-  //   console.log("El registro es valido")
-  //   agregarUsuario()
+  ckeck();
+}
 
-  // }
+function login(){
+  const registerUsername = document.getElementById("loginUsername").value;
+  const name = document.getElementById("name").value;
+
 }
 
 const v_login = document.getElementById("btonLogin");
@@ -225,3 +160,60 @@ v_login.addEventListener("click", login);
 
 const v_register = document.getElementById("btn_register");
 v_register.addEventListener("click", register);
+
+
+
+
+
+// Ideas para la siguiente parte
+
+// function login() {
+//   if (validateLogin()) {
+//     const username = document.getElementById("loginUsername").value;
+//     // Aquí puedes comprobar si el usuario existe en tu base de datos
+//     obtenerUsuario(username).then(existe => {
+//       if (existe) {
+//         // Abre una nueva pestaña con la URL deseada
+//         window.open('pagina-despues-login.html', '_blank'); // Cambia 'pagina-despues-login.html' por tu archivo HTML
+//         console.log("Login aceptado");
+//       } else {
+//         alert("El usuario no existe");
+//       }
+//     });
+//   } else {
+//     alert("Por favor, completa los datos correctamente.");
+//   }
+// }
+
+
+
+// En pagina-despues-login.html
+// const urlParams = new URLSearchParams(window.location.search);
+// const username = urlParams.get('user');
+// console.log("Usuario logueado:", username);
+
+
+
+// function login() {
+//   if (validateLogin()) {
+//     const username = document.getElementById("loginUsername").value;
+
+//     obtenerUsuario(username).then(existe => {
+//       if (existe) {
+//         // Guarda la URL actual en una variable
+//         const currentUrl = window.location.href;
+
+//         // Abre una nueva pestaña con la URL deseada
+//         window.open('pagina-despues-login.html?referrer=' + encodeURIComponent(currentUrl), '_blank');
+
+//         console.log("Login aceptado");
+//       } else {
+//         alert("El usuario no existe");
+//       }
+//     });
+//   } else {
+//     alert("Por favor, completa los datos correctamente.");
+//   }
+// }
+
+
