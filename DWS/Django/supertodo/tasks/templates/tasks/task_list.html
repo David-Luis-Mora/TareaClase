@@ -3,19 +3,10 @@
 
 {% block body %}
   <h1>Funciona</h1>
-  {% comment %} <h1>Nanobits: the ultimate tech blog!</h1>
-  <a class="button" href="{% url 'blog:add-post' %}">Add new post</a>
-  <p>
-    Total posts: <strong>{{ num_posts }}</strong> post{{ num_posts|pluralize }}
-    {% if num_posts > 1 %}
-      🎉
-    {% else %}
-      😔
-    {% endif %}
-  </p>
+  {% comment %} <a class="button" href="{% url 'blog:add-post' %}">Add new post</a> {% endcomment %}
   {% for post in posts %}
-    <h2>{{ post.title }}</h2>
+    <h2>{{ tasks.title }}</h2>
     <div class="post-date">{{ post.created_at }}</div>
     <p>{{ post.content|truncatewords:20 }} <a href="{% url 'blog:post-detail' post.slug %}">[Read more]</a></p>
-  {% endfor %} {% endcomment %}
+  {% endfor %}
 {% endblock body %}

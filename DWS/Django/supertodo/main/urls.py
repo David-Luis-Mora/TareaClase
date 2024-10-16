@@ -22,5 +22,5 @@ urlpatterns = [
     
     path('admin/', admin.site.urls),
     path('tasks/',include('tasks.urls')),
-    path('', lambda _:redirect('tasks:task_list')),
+    path('', lambda _:redirect('tasks: task_list'),name='task-list'),
 ]

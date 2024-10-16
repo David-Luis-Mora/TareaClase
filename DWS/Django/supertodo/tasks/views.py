@@ -23,6 +23,36 @@ def task_list(request):
         {'tasks': tasks},
     )
 
+def task_done(request):
+    # num_tasks = Task.objects.count()
+    tasks = Task.objects.all()
+    # print('Hola estoy en el home')
+    return render(
+        request,
+        'tasks/task_list.html',
+        {'tasks': tasks},
+    )
+
+def task_pendig(request):
+    # num_tasks = Task.objects.count()
+    tasks = Task.objects.all()
+    # print('Hola estoy en el home')
+    return render(
+        request,
+        'tasks/task_list.html',
+        {'tasks': tasks},
+    )
+
+def add_task(request):
+    # num_tasks = Task.objects.count()
+    tasks = Task.objects.all()
+    # print('Hola estoy en el home')
+    return render(
+        request,
+        'tasks/task_list.html',
+        {'tasks': tasks},
+    )
+
 
 # def task_detail(request, task_slug):
 #     # print(f'Tiene sentido que {post_id}')
