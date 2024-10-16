@@ -37,6 +37,13 @@ async function obtenerUsuario(id) {
   }
 }
 
+async function getAllUsers() {
+  const usuariosCol = collection(db, 'Usuarios'); // Referencia a la colección
+  const snapshot = await getDocs(usuariosCol); // Obtiene todos los documentos en la colección
+  const userList = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() })); // Mapea a un arreglo de objetos
+  return userList;
+}
+
 async function agregarUsuario(registerUsername, name, apellidos, email, edad, ciudad, password) {
   const data = {
     nombreUsuario : registerUsername,
@@ -134,26 +141,30 @@ async function ckeck() {
 
 
 
-// function login() {
-//   if (validateLogin()) {
-//     console.log("Login aceptado");
-//     const username = document.getElementById("loginUsername").value;
-//     obtenerUsuario(username);
-//   } else {
-//     alert("El usuario no existe");
-//   }
-// }
+async function login(event) {
+  event.preventDefault();
+  if (validateLogin()) {
+    console.log("Comprobar que el usuario existe");
+    const allUsers = await getAllUsers(); // Obtiene todos los usuarios
+    console.log("Todos los usuarios");
+    console.log(allUsers);
+
+    // Aquí podrías agregar lógica para verificar si el usuario que intenta logearse existe
+  } else {
+    alert("Por favor, completa los datos correctamente.");
+  }
+}
 
 function register(event) {
   event.preventDefault();
   ckeck();
 }
 
-function login(){
-  const registerUsername = document.getElementById("loginUsername").value;
-  const name = document.getElementById("name").value;
+// function login(){
+//   const registerUsername = document.getElementById("loginUsername").value;
+//   const name = document.getElementById("name").value;
 
-}
+// }
 
 const v_login = document.getElementById("btonLogin");
 v_login.addEventListener("click", login);
