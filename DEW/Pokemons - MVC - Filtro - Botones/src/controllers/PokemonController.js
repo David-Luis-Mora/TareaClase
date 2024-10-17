@@ -131,3 +131,37 @@ export class PokemonController {
     }
   }
 }
+
+
+// Ideas
+// // Abrimos una nueva pestaña
+// const nuevaPestana = window.open('', '_blank');
+
+// // Verificamos si la pestaña se abrió correctamente
+// if (nuevaPestana) {
+//     // Cambiamos el título de la nueva pestaña
+//     nuevaPestana.document.title = "Nueva Pestaña Dinámica";
+
+//     // Escribimos contenido dentro de la nueva pestaña
+//     nuevaPestana.document.body.innerHTML = `
+//         <h1>Bienvenido a la nueva pestaña</h1>
+//         <p>Este es un contenido dinámico generado con JavaScript.</p>
+//         <p>Correo del usuario: <strong id="correoUsuario"></strong></p>
+//         <button id="botonCerrar">Cerrar Pestaña</button>
+//     `;
+
+//     // Añadimos funcionalidad para mostrar el correo almacenado en localStorage
+//     const correoUsuario = localStorage.getItem("correoUsuario");
+//     if (correoUsuario) {
+//         nuevaPestana.document.getElementById("correoUsuario").textContent = correoUsuario;
+//     }
+
+//     // Añadimos un botón para cerrar la nueva pestaña
+//     nuevaPestana.document.getElementById("botonCerrar").addEventListener("click", function() {
+//         nuevaPestana.close();
+//     });
+// } else {
+//     // Si la pestaña no se pudo abrir, mostramos un mensaje de error en la consola
+//     console.error("No se pudo abrir la nueva pestaña. Verifica los permisos del navegador.");
+// }
+
