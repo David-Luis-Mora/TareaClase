@@ -145,11 +145,40 @@ async function login(event) {
   event.preventDefault();
   if (validateLogin()) {
     console.log("Comprobar que el usuario existe");
-    const allUsers = await getAllUsers(); // Obtiene todos los usuarios
+    const allUsers = await getAllUsers();
+    const username = document.getElementById("loginUsername").value;
+    const password = document.getElementById("loginPassword").value;
+    let correoUsuario = "";
+    let count  = 0
+
+    allUsers.forEach((element) => {
+      if (element.nombreUsuario == username  && element.password == password) {
+        count += 1
+        console.log(`Nombre de Usuario: ${element.nombreUsuario}`);
+        console.log(`Contraseña: ${element.password}`);
+        correoUsuario = element.email
+      }
+    });
+
+    if (count == 1){
+      console.log("El usuario existe")
+
+      const currentUrl = window.location.href;
+      const rootUrl = window.location.protocol + "//" + window.location.host;
+      const newUrl = rootUrl + '/DEW/Pokemons - MVC - Filtro - Botones/Index.html?referrer=' + encodeURIComponent(currentUrl);
+      window.open(newUrl, '_blank');
+      console.log("Login aceptado");
+
+     
+      localStorage.setItem("correoUsuario", correoUsuario);
+
+    }else{
+      alert("El nombre de usuario o la contraseña no existe")
+    }
+
     console.log("Todos los usuarios");
     console.log(allUsers);
 
-    // Aquí podrías agregar lógica para verificar si el usuario que intenta logearse existe
   } else {
     alert("Por favor, completa los datos correctamente.");
   }
