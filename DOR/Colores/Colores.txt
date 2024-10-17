@@ -9,6 +9,6 @@ Balsamiq
 https://moqups.com/es/
 https://www.justinmind.com/?k=justinmind&a=706990395341&adg=52001997837&cmp=1063145459&match=e&adposition=&utm_medium=cpc&utm_source=google&utm_campaign=1063145459&utm_term=justinmind_e&gad_source=1&gclid=EAIaIQobChMI6onlnp6TiQMV1pODBx3rpS1zEAAYASAAEgJgBvD_BwE
 
-Wireframe: 3 pantalla por ejemplo Login/MAIN /Registro
- Mockup : El diseño completo con el Main(Es que tiene que tener mas contenido)
- Prototipo: Funcional minimo
+Wireframe: 3 pantalla por ejemplo Login/MAIN /Registro un dispositivo
+ Mockup : El diseño completo con el Main(Es que tiene que tener mas contenido) 3 dispositivo
+ Prototipo: Funcional minimo dispositivo
