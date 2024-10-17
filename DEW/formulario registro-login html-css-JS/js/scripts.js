@@ -164,8 +164,12 @@ async function login(event) {
       console.log("El usuario existe")
 
       const currentUrl = window.location.href;
+      console.log(currentUrl)
       const rootUrl = window.location.protocol + "//" + window.location.host;
-      const newUrl = rootUrl + '/DEW/Pokemons - MVC - Filtro - Botones/Index.html?referrer=' + encodeURIComponent(currentUrl);
+      console.log(rootUrl)
+      const newUrl = rootUrl + '/DEW/Pokemons - MVC - Filtro - Botones/index.html';
+      console.log(newUrl)
+
       window.open(newUrl, '_blank');
       console.log("Login aceptado");
 
