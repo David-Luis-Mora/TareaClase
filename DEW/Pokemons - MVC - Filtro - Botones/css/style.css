@@ -164,3 +164,9 @@ body {
   font: bold;
   background-image: linear-gradient(rgb(169, 248, 218), rgb(0, 255, 115));
 }
+.section{
+  background-color: #007BFF;
+  color: white; 
+  border-color: #0056b3; 
+
+}

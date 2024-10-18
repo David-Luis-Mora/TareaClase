@@ -156,8 +156,9 @@ async function login(event) {
         count += 1
         console.log(`Nombre de Usuario: ${element.nombreUsuario}`);
         console.log(`Contraseña: ${element.password}`);
-        correoUsuario = element.email
+        correoUsuario = element
       }
+    console.log()
     });
 
     if (count == 1){
@@ -175,6 +176,7 @@ async function login(event) {
 
      
       localStorage.setItem("correoUsuario", correoUsuario);
+      console.log(correoUsuario)
 
     }else{
       alert("El nombre de usuario o la contraseña no existe")
