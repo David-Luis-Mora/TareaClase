@@ -1,14 +1,7 @@
 from django.shortcuts import render
 
 # Create your views here.
-
-
-
-from django.shortcuts import redirect, render
-from django.utils.text import slugify
-
 from tasks.models import Task
-
 
 # from .forms import AddTaskForm
 
@@ -23,6 +16,7 @@ def task_list(request):
         {'tasks': tasks},
     )
 
+
 def task_done(request):
     # num_tasks = Task.objects.count()
     tasks = Task.objects.all()
@@ -32,6 +26,7 @@ def task_done(request):
         'tasks/task_list.html',
         {'tasks': tasks},
     )
+
 
 def task_pendig(request):
     # num_tasks = Task.objects.count()
@@ -43,15 +38,18 @@ def task_pendig(request):
         {'tasks': tasks},
     )
 
+
 def add_task(request):
-    # num_tasks = Task.objects.count()
-    tasks = Task.objects.all()
-    # print('Hola estoy en el home')
-    return render(
-        request,
-        'tasks/task_list.html',
-        {'tasks': tasks},
-    )
+    pass
+    # if request.method == 'GET':
+    #     form = AddPostForm()
+    # else:
+    #     if (form := AddPostForm(data=request.POST)).is_valid():
+    #         post = form.save(commit=False)
+    #         post.slug = slugify(post.title)
+    #         post.save()
+    #         return redirect('blog:home')
+    # return render(request, 'blog/post/add.html', dict(form=form))
 
 
 # def task_detail(request, task_slug):

@@ -47,11 +47,18 @@ export class PokemonController {
     // Bind Cards pokemons
     this.cardPokemons = document.querySelectorAll(".card");
     this.cardPokemons.forEach((card) => {
-      console.log(card)
+      // console.log(card)
       card.addEventListener("click", () =>{
-        console.log(this.model.pokemons)
-        for(i= 0; i < this.model.pokemons.length; i++){
-          console.log(this.model.pokemons[i])
+        // console.log(card.id)
+        let elemnt = card.id.split("-")
+        // console.log(elemnt )
+        let num = elemnt[1]
+        // console.log(num)
+        for(let i= 0; i < this.model.pokemons.length; i++){
+          if(this.model.pokemons[i].id == num)
+            console.log("Encontro")
+            this.pokemonsClicked([this.model.pokemons[i].name,this.model.pokemons[i].price])
+          // console.log(this.model.pokemons[i])
           break;
         }
         // this.model.pokemons.forEach((element) =>{
@@ -66,9 +73,9 @@ export class PokemonController {
     });
   }
 
-  pokemonsClicked(card) {
-    this.newDesireList.push([card[0],card[1]]);
-    console.log(`${card}`)
+  pokemonsClicked(name,price) {
+    this.newDesireList.push([name,price]);
+    console.log(`${name,price}`)
   }
 
   async filteringPokemons() {
