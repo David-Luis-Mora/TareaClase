@@ -1,12 +1,27 @@
 {% extends "tasks/base.html" %}
-{% block title %}Nanobits | Home{% endblock title %}
+{% block title %}Tareas | Home{% endblock title %}
 
 {% block body %}
-  <h1>Funciona</h1>
+  <h1>Tareas</h1>
+  {% comment %} <button href="{% url 'tasks:add_task' task.slug %}">Agregar</button>
+  <button href="{% url 'tasks:task_detail' task.slug %}">Hechas</button>
+  <button href="{% url 'tasks:task_detail' task.slug %}">pendiente</button> {% endcomment %}
+  {% comment %} <h1>Funciona</h1> {% endcomment %}
   {% comment %} <a class="button" href="{% url 'blog:add-post' %}">Add new post</a> {% endcomment %}
-  {% for post in posts %}
-    <h2>{{ tasks.title }}</h2>
-    <div class="post-date">{{ post.created_at }}</div>
-    <p>{{ post.content|truncatewords:20 }} <a href="{% url 'blog:post-detail' post.slug %}">[Read more]</a></p>
-  {% endfor %}
+
+    {% for task in tasks %}
+    <div>
+      <p>{{ task.name }}</p>
+      <button>Cambiar</button>
+      <button>Editar</button>
+      <button>Eliminar</button>
+      {% comment %} <div class="post-date">{{ task.description }}</div> {% endcomment %}
+    </div>
+ 
+
+    {% comment %} <p><a href="{% url 'tasks:task_detail' task.slug %}">[Read more]</a></p> {% endcomment %}
+    {% endfor %}
+
+ 
+ 
 {% endblock body %}

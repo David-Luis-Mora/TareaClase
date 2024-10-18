@@ -1,14 +1,7 @@
 from django.shortcuts import render
 
 # Create your views here.
-
-
-
-from django.shortcuts import redirect, render
-from django.utils.text import slugify
-
 from tasks.models import Task
-
 
 # from .forms import AddTaskForm
 
@@ -23,6 +16,7 @@ def task_list(request):
         {'tasks': tasks},
     )
 
+
 def task_done(request):
     # num_tasks = Task.objects.count()
     tasks = Task.objects.all()
@@ -33,6 +27,7 @@ def task_done(request):
         {'tasks': tasks},
     )
 
+
 def task_pendig(request):
     # num_tasks = Task.objects.count()
     tasks = Task.objects.all()
@@ -42,6 +37,7 @@ def task_pendig(request):
         'tasks/task_list.html',
         {'tasks': tasks},
     )
+
 
 def add_task(request):
     # num_tasks = Task.objects.count()
