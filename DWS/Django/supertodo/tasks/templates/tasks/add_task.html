@@ -1,0 +1,21 @@
+{% extends "tasks/base.html" %}
+{% block title %}Detalle de la Tarea{% endblock title %}
+
+{% block body %}
+  <h1>Crear nuevo post</h1>
+
+  <form method="post" novalidate>
+    {% csrf_token %}
+    {{ form }}
+    <div>
+      <button type="submit">
+        <p>Crear Tarea</p>
+      </button>
+      <button type="submit">
+        <p href="../">Cancelar</p>
+      </button>
+    </div>
+  </form>
+
+
+{% endblock body %}

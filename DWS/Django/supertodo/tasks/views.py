@@ -40,14 +40,16 @@ def task_pendig(request):
 
 
 def add_task(request):
-    # num_tasks = Task.objects.count()
-    tasks = Task.objects.all()
-    # print('Hola estoy en el home')
-    return render(
-        request,
-        'tasks/task_list.html',
-        {'tasks': tasks},
-    )
+    pass
+    # if request.method == 'GET':
+    #     form = AddPostForm()
+    # else:
+    #     if (form := AddPostForm(data=request.POST)).is_valid():
+    #         post = form.save(commit=False)
+    #         post.slug = slugify(post.title)
+    #         post.save()
+    #         return redirect('blog:home')
+    # return render(request, 'blog/post/add.html', dict(form=form))
 
 
 # def task_detail(request, task_slug):
