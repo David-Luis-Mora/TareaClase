@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Asigna un poder</title>
+</head>
+<body>
+    <h1>Selecciona un superhéroe</h1>
+    <select id="superheroes">
+        <option value="Superman">Superman</option>
+        <option value="Batman">Batman</option>
+        <option value="Wonder Woman">Wonder Woman</option>
+        <option value="Flash">Flash</option>
+    </select>
+    <p id="poder"></p>
+
+    <script>
+        const poderes = {
+            Superman: "Vuelo y super fuerza",
+            Batman: "Inteligencia y tecnología",
+            "Wonder Woman": "Fuerza y agilidad",
+            Flash: "Super velocidad"
+        };
+
+        document.getElementById("superheroes").addEventListener("change", function() {
+            let heroeSeleccionado = this.value;
+            document.getElementById("poder").textContent = `Poder: ${poderes[heroeSeleccionado]}`;
+        });
+    </script>
+</body>
+</html>

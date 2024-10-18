@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Misiones X-Men</title>
+    <style>
+        .completada {
+            text-decoration: line-through;
+            color: gray;
+        }
+    </style>
+</head>
+<body>
+    <h1>Misiones X-Men</h1>
+    <ul id="misiones">
+        <li>Misión 1: Rescatar a los prisioneros</li>
+        <li>Misión 2: Detener a Magneto</li>
+        <li>Misión 3: Proteger a los mutantes</li>
+    </ul>
+
+    <script>
+        document.getElementById("misiones").addEventListener("click", function(e) {
+            if (e.target.tagName === "LI") {
+                e.target.classList.toggle("completada");
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>El Anillo Único</title>
+</head>
+<body>
+    <ul>
+        <li>Gandalf</li>
+        <li>Aragorn</li>
+        <li>Frodo</li>
+        <li>Legolas</li>
+    </ul>
+    <button id="encontrarAnillo">Encontrar el Anillo</button>
+
+    <script>
+        document.getElementById("encontrarAnillo").addEventListener("click", function() {
+            let personajes = document.querySelectorAll("li");
+            personajes.forEach((personaje) => {
+                if (personaje.textContent === "Frodo") {
+                    personaje.style.backgroundColor = "yellow";
+                }
+            });
+        });
+    </script>
+</body>
+</html>

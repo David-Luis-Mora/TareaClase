@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Mapa de la Tierra Media</title>
+</head>
+<body>
+    <h1>Haz clic en un reino</h1>
+    <ul>
+        <li class="reino" data-reino="Mordor">Mordor</li>
+        <li class="reino" data-reino="Rohan">Rohan</li>
+        <li class="reino" data-reino="Gondor">Gondor</li>
+    </ul>
+
+    <script>
+        document.querySelectorAll(".reino").forEach((reino) => {
+            reino.addEventListener("click", function() {
+                alert("Has clickeado en: " + reino.dataset.reino);
+            });
+        });
+    </script>
+</body>
+</html>

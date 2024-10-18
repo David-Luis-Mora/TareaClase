@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>La Batiseñal</title>
+    <style>
+        body {
+            transition: background-image 0.5s ease;
+        }
+    </style>
+</head>
+<body>
+    <button id="mostrarBatiseñal">Mostrar Batiseñal</button>
+
+    <script>
+        document.getElementById("mostrarBatiseñal").addEventListener("click", function() {
+            document.body.style.backgroundImage = "url('./batiseñal.png')";
+            document.body.style.backgroundSize = "cover";
+        });
+    </script>
+</body>
+</html>

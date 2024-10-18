@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>El sable láser</title>
+</head>
+<body>
+    <img id="sable" src="./sable-apagado.jpg" alt="Sable láser apagado" style="width: 200px;">
+    
+    <script>
+        document.getElementById("sable").addEventListener("click", function() {
+            this.src = "./sable-encendido.jpg";
+        });
+    </script>
+</body>
+</html>

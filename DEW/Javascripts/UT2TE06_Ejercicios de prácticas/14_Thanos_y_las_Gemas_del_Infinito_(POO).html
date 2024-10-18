@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Thanos y las Gemas del Infinito</title>
+</head>
+<body>
+    <h1>Recolecta las Gemas del Infinito</h1>
+    <button id="recolectarGema">Recolectar Gema</button>
+    <p id="poderTotal"></p>
+
+    <script>
+        class Gema {
+            constructor(nombre, poder) {
+                this.nombre = nombre;
+                this.poder = poder;
+            }
+        }
+
+        class Thanos {
+            constructor() {
+                this.gemas = [];
+            }
+
+            recolectarGema(gema) {
+                this.gemas.push(gema);
+            }
+
+            calcularPoderTotal() {
+                return this.gemas.reduce((total, gema) => total + gema.poder, 0);
+            }
+        }
+
+        const thanos = new Thanos();
+        const gemas = [
+            new Gema("Gema del Poder", 100),
+            new Gema("Gema del Tiempo", 200),
+            new Gema("Gema del Espacio", 150),
+            new Gema("Gema de la Realidad", 180),
+            new Gema("Gema del Alma", 130),
+            new Gema("Gema de la Mente", 220)
+        ];
+
+        let gemaActual = 0;
+
+        document.getElementById("recolectarGema").addEventListener("click", function() {
+            if (gemaActual < gemas.length) {
+                thanos.recolectarGema(gemas[gemaActual]);
+                let poderTotal = thanos.calcularPoderTotal();
+                document.getElementById("poderTotal").textContent = `Poder total: ${poderTotal}`;
+                gemaActual++;
+            } else {
+                document.getElementById("poderTotal").textContent = "Thanos ya ha recolectado todas las gemas.";
+            }
+        });
+    </script>
+</body>
+</html>

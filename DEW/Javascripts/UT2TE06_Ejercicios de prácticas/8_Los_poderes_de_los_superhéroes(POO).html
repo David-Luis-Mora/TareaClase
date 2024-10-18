@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Los Poderes de los Superhéroes</title>
+</head>
+<body>
+    <h1>El superhéroe más poderoso</h1>
+    <button id="buscarPoderoso">Buscar al más poderoso</button>
+    <p id="resultado"></p>
+
+    <script>
+        class Superheroe {
+            constructor(nombre, poder, nivel) {
+                this.nombre = nombre;
+                this.poder = poder;
+                this.nivel = nivel;
+            }
+        }
+
+        const superheroes = [
+            new Superheroe("Superman", "Vuelo", 95),
+            new Superheroe("Batman", "Inteligencia", 85),
+            new Superheroe("Wonder Woman", "Fuerza", 90),
+            new Superheroe("Flash", "Velocidad", 92)
+        ];
+
+        document.getElementById("buscarPoderoso").addEventListener("click", function() {
+            let masPoderoso = superheroes.reduce((max, heroe) => (heroe.nivel > max.nivel ? heroe : max));
+            document.getElementById("resultado").textContent = `El superhéroe más poderoso es: ${masPoderoso.nombre}`;
+        });
+    </script>
+</body>
+</html>

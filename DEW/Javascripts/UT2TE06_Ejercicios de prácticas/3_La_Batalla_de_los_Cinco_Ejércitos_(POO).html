@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>La Batalla de los Cinco Ejércitos</title>
+</head>
+<body>
+    <h1>Resultado de la Batalla</h1>
+    <button id="iniciarBatalla">Iniciar Batalla</button>
+    <p id="resultado"></p>
+
+    <script>
+        class Ejercito {
+            constructor(nombre, numeroSoldados, fuerza) {
+                this.nombre = nombre;
+                this.numeroSoldados = numeroSoldados;
+                this.fuerza = fuerza;
+            }
+        }
+
+        const ejercitos = [
+            new Ejercito("Gondor", 5000, 90),
+            new Ejercito("Rohan", 3000, 85),
+            new Ejercito("Elfos", 2000, 95),
+            new Ejercito("Enanos", 1000, 80),
+            new Ejercito("Orcos", 8000, 70)
+        ];
+
+        document.getElementById("iniciarBatalla").addEventListener("click", function() {
+            let ganador = ejercitos.reduce((max, ejercito) => (ejercito.fuerza > max.fuerza ? ejercito : max));
+            document.getElementById("resultado").textContent = "El ejército ganador es: " + ganador.nombre;
+        });
+    </script>
+</body>
+</html>

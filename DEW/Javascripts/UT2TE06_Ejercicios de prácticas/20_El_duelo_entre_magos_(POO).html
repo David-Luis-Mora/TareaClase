@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>El duelo entre magos</title>
+</head>
+<body>
+    <h1>El duelo entre magos</h1>
+    <button id="iniciarDuelo">Iniciar Duelo</button>
+    <p id="resultado"></p>
+
+    <script>
+        class Hechizo {
+            constructor(nombre, poder) {
+                this.nombre = nombre;
+                this.poder = poder;
+            }
+        }
+
+        class Mago {
+            constructor(nombre, hechizo) {
+                this.nombre = nombre;
+                this.hechizo = hechizo;
+            }
+
+            lanzarHechizo() {
+                return this.hechizo.poder;
+            }
+        }
+
+        const hechizoGandalf = new Hechizo("Luz cegadora", 90);
+        const hechizoSaruman = new Hechizo("Fuego oscuro", 85);
+
+        const gandalf = new Mago("Gandalf", hechizoGandalf);
+        const saruman = new Mago("Saruman", hechizoSaruman);
+
+        document.getElementById("iniciarDuelo").addEventListener("click", function() {
+            const ganador = gandalf.lanzarHechizo() > saruman.lanzarHechizo() ? gandalf.nombre : saruman.nombre;
+            document.getElementById("resultado").textContent = `El ganador del duelo es: ${ganador}`;
+        });
+    </script>
+</body>
+</html>

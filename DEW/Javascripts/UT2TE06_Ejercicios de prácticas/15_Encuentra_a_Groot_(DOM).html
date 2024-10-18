@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Encuentra a Groot</title>
+    <style>
+        img {
+            width: 150px;
+            margin: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Encuentra a Groot</h1>
+    <div>
+        <img src="./groot.png" alt="Groot" id="groot">
+        <img src="./personaje1.png" alt="Personaje 1">
+        <img src="./personaje2.png" alt="Personaje 2">
+    </div>
+
+    <script>
+        document.getElementById("groot").addEventListener("click", function() {
+            alert("¡Yo soy Groot!");
+        });
+    </script>
+</body>
+</html>

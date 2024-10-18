@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>El plan de Joker</title>
+</head>
+<body>
+    <h1>El Plan de Joker</h1>
+    <p id="planActual"></p>
+    <button id="cambiarPlan">Cambiar Plan</button>
+
+    <script>
+        class Villano {
+            constructor(nombre, plan) {
+                this.nombre = nombre;
+                this.plan = plan;
+            }
+
+            cambiarPlan(nuevoPlan) {
+                this.plan = nuevoPlan;
+            }
+        }
+
+        const joker = new Villano("Joker", "Robar el banco de Ciudad Gótica");
+
+        document.getElementById("planActual").textContent = `El plan actual de Joker es: ${joker.plan}`;
+
+        document.getElementById("cambiarPlan").addEventListener("click", function() {
+            joker.cambiarPlan("Controlar Ciudad Gótica");
+            document.getElementById("planActual").textContent = `El nuevo plan de Joker es: ${joker.plan}`;
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Combate Jedi</title>
+</head>
+<body>
+    <h1>Resultado del Combate</h1>
+    <button id="iniciarCombate">Iniciar Combate</button>
+    <p id="resultado"></p>
+
+    <script>
+        class Jedi {
+            constructor(nombre, nivelFuerza, arma) {
+                this.nombre = nombre;
+                this.nivelFuerza = nivelFuerza;
+                this.arma = arma;
+            }
+        }
+
+        class Sith {
+            constructor(nombre, nivelFuerza, arma) {
+                this.nombre = nombre;
+                this.nivelFuerza = nivelFuerza;
+                this.arma = arma;
+            }
+        }
+
+        const jedi = new Jedi("Luke Skywalker", 90, "Sable láser verde");
+        const sith = new Sith("Darth Vader", 85, "Sable láser rojo");
+
+        document.getElementById("iniciarCombate").addEventListener("click", function() {
+            const ganador = jedi.nivelFuerza > sith.nivelFuerza ? jedi.nombre : sith.nombre;
+            document.getElementById("resultado").textContent = `El ganador es: ${ganador}`;
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>La elección del Anillo</title>
+    <style>
+        img {
+            width: 100px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <h1>Elige un Anillo</h1>
+    <div>
+        <img id="sauron" src="./anillo-sauron.png" alt="Anillo de Sauron">
+        <img id="gandalf" src="./anillo-gandalf.png" alt="Anillo de Gandalf">
+        <img id="frodo" src="./anillo-frodo.png" alt="Anillo de Frodo">
+    </div>
+    <p id="resultado"></p>
+
+    <script>
+        document.getElementById("frodo").addEventListener("click", function() {
+            document.getElementById("resultado").textContent = "Has elegido correctamente";
+        });
+
+        document.getElementById("sauron").addEventListener("click", function() {
+            document.getElementById("resultado").textContent = "Ese no es el anillo correcto";
+        });
+
+        document.getElementById("gandalf").addEventListener("click", function() {
+            document.getElementById("resultado").textContent = "Ese no es el anillo correcto";
+        });
+    </script>
+</body>
+</html>

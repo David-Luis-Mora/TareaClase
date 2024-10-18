@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>El vuelo de Superman</title>
+    <style>
+        #superman {
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            width: 150px;
+            transition: bottom 1s ease;
+        }
+    </style>
+</head>
+<body>
+    <h1>El vuelo de Superman</h1>
+    <img id="superman" src="./superman.png" alt="Superman">
+    <button id="volarBtn">¡Volar!</button>
+
+    <script>
+        class Superman {
+            constructor(nombre) {
+                this.nombre = nombre;
+            }
+
+            volar() {
+                let supermanImg = document.getElementById("superman");
+                supermanImg.style.bottom = "500px"; // Superman "vuela" hacia arriba
+            }
+        }
+
+        const superman = new Superman("Superman");
+
+        document.getElementById("volarBtn").addEventListener("click", function() {
+            superman.volar();
+        });
+    </script>
+</body>
+</html>

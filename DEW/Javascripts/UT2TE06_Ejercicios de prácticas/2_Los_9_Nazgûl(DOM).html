@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Los 9 Nazgûl</title>
+</head>
+<body>
+    <ul id="nazgulList">
+        <li>Rey Brujo</li>
+        <li>Nazgûl 2</li>
+        <li>Nazgûl 3</li>
+        <li>Nazgûl 4</li>
+        <li>Nazgûl 5</li>
+        <li>Nazgûl 6</li>
+        <li>Nazgûl 7</li>
+        <li>Nazgûl 8</li>
+        <li>Nazgûl 9</li>
+    </ul>
+
+    <script>
+        let nazgulList = document.querySelectorAll("#nazgulList li");
+        nazgulList.forEach((nazgul) => {
+            nazgul.addEventListener("mouseover", function() {
+                nazgul.textContent = "Nazgûl";
+                nazgul.style.backgroundColor = "black";
+                nazgul.style.color = "white";
+            });
+            nazgul.addEventListener("mouseout", function() {
+                nazgul.style.backgroundColor = "";
+                nazgul.style.color = "";
+            });
+        });
+    </script>
+</body>
+</html>
