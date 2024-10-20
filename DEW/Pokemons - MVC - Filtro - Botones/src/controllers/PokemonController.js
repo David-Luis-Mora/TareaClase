@@ -294,11 +294,10 @@ export class PokemonController {
     let storedUser = localStorage.getItem("correoUsuario");
     let users = JSON.parse(storedUser);
   
-    console.log(users);
+    console.log(users.favoritos);
   
     let nuevaVentana = window.open("", "_blank");
   
-    // Función para generar la tabla HTML, ahora dentro del script de la nueva ventana
     let tablaHTML = `
       <table border="1">
         <thead>
@@ -315,13 +314,15 @@ export class PokemonController {
       let registro = users.favoritos[j];
       let claves = Object.keys(registro).length;
       for (let k = 0; k < claves; k++) {
-        tablaHTML += `
-        <tr>
-          <td>${users.favoritos[j][k].id}</td>
-          <td>${users.favoritos[j][k].name}</td>
-          <td>${users.favoritos[j][k].price}</td>
-          <td><button class="borrar-btn" id="${users.favoritos[j][k].id}">Borrar</button></td>
-        </tr>`;
+        if (users.favoritos[j][k]) { // Verifica que el elemento exista
+          tablaHTML += `
+          <tr>
+            <td>${users.favoritos[j][k].id}</td>
+            <td>${users.favoritos[j][k].name}</td>
+            <td>${users.favoritos[j][k].price}</td>
+            <td><button class="borrar-btn" id="${users.favoritos[j][k].id}">Borrar</button></td>
+          </tr>`;
+        }
       }
     }
   
@@ -340,54 +341,60 @@ export class PokemonController {
             ${tablaHTML}
           </div>
           <script>
-            // Función para regenerar la tabla HTML
             function generarTablaHTML(users) {
-              let tablaHTML = '';
+              let tablaHTML =
+              \`<table border="1">
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>Name</th>
+                  <th>Precio</th>
+                  <th>Acción</th>
+                </tr>
+              </thead>
+              <tbody id="tabla-contenedor">\`
               for (let j = 0; j < users.favoritos.length; j++) {
                 let registro = users.favoritos[j];
                 let claves = Object.keys(registro).length;
                 for (let k = 0; k < claves; k++) {
-                  if (users.favoritos[j][k]) { // Verificar que el elemento exista
-                    tablaHTML += \`
-                    <tr>
-                      <td>\${users.favoritos[j][k].id}</td>
-                      <td>\${users.favoritos[j][k].name}</td>
-                      <td>\${users.favoritos[j][k].price}</td>
-                      <td><button class="borrar-btn" id="\${users.favoritos[j][k].id}">Borrar</button></td>
-                    </tr>\`;
-                  }
+                  tablaHTML += \`
+                  <tr>
+                    <td>\${users.favoritos[j][k].id}</td>
+                    <td>\${users.favoritos[j][k].name}</td>
+                    <td>\${users.favoritos[j][k].price}</td>
+                    <td><button class="borrar-btn" id="\${users.favoritos[j][k].id}">Borrar</button></td>
+                  </tr>\`;
                 }
               }
-              return tablaHTML;
+              tablaHTML += \`
+                </tbody>
+              </table>;\`
+              document.body.innerHTML = ""
+              document.body.innerHTML =\`
+                 <html>
+                    <head>
+                      <title>Tabla Dinámica</title>
+                    </head>
+                    <body>
+                      <h1>Lista de Favoritos</h1>
+                      <div id="tabla-contenedor">
+                        ${tablaHTML}
+                      </div>
+                    </body>
+                  </html>
+              
+              \`
+              //return tablaHTML;
             }
   
-            // Función para actualizar la tabla
             function actualizarTabla() {
-              let tablaHTML = '';
               let storedUser = localStorage.getItem("correoUsuario");
               let users = JSON.parse(storedUser);
               let nuevaTabla = generarTablaHTML(users);
-              document.getElementById('tabla-contenedor').innerHTML = "";
-              for (let j = 0; j < users.favoritos.length; j++) {
-                let registro = users.favoritos[j];
-                let claves = Object.keys(registro).length;
-                for (let k = 0; k < claves; k++) {
-                  if (users.favoritos[j][k]) { // Verificar que el elemento exista
-                    tablaHTML += \`
-                    <tr>
-                      <td>\${users.favoritos[j][k].id}</td>
-                      <td>\${users.favoritos[j][k].name}</td>
-                      <td>\${users.favoritos[j][k].price}</td>
-                      <td><button class="borrar-btn" id="\${users.favoritos[j][k].id}">Borrar</button></td>
-                    </tr>\`;
-                  }
-                }
-              }
-
+              document.getElementById('tabla-contenedor').innerHTML = nuevaTabla;
               borrarRegistro();
             }
   
-            // Función para borrar el registro
             function borrarRegistro() {
               document.querySelectorAll('.borrar-btn').forEach(button => {
                 button.addEventListener('click', function() {
@@ -396,8 +403,8 @@ export class PokemonController {
                   let users = JSON.parse(storedUser);
                   let pos = 0;
                   let clave_aux = 0;
+                  //console.log(users.favoritos)
                   
-                  // Buscar el elemento a eliminar
                   for (let j = 0; j < users.favoritos.length; j++) {
                     for (let clave in users.favoritos[j]) {
                       if (users.favoritos[j][clave] && users.favoritos[j][clave].id == ident) {
@@ -407,25 +414,77 @@ export class PokemonController {
                     }
                   }
                   
-                  // Eliminar el elemento
-                  delete users.favoritos[pos][clave_aux];
+                  delete users.favoritos.splice(pos, 1);
+
+                  // let key = {}
+                  // let key_aux = {}
+                  // let count = 0;
+                  // for(let i = 0; i <  users.favoritos.length; i++){
+                  //   let registro = users.favoritos[i];
+                  //   let claves = Object.keys(registro).length;
+                  //   let valor =  Object.values(registro).length
+                  //   if( claves.length == valor.length){
+                  //     console.log("El registro no tiene hueco")
+                  //     key[count] = users.favoritos[i]
+                  //     count += 1;
+                  //     console.log("Se ha añadido el pokemon en la lista")
+
+                  //   }else{
+                  //     let count_2 = 0 
+                  //     for(let k  in value){
+                  //       key_aux[count_2] = users.favoritos[i][k]
+                  //     }
+                  //     key[count] = key_aux
+                  //     count += 1;
+                  //     console.log("Se ha añadido el pokemon en la lista, habia un hueco")
+                  //   }
+                  // }
+                  console.log(users.favoritos)
+                  //users.favoritos = []
+                  //users.favoritos.push(key)                  
                   localStorage.setItem("correoUsuario", JSON.stringify(users));
-                  
-                  // Actualizar la tabla en la ventana
-                  actualizarTabla();
+                  //actualizarTabla();
                 });
               });
             }
   
-            // Asignar eventos iniciales
             borrarRegistro();
           </script>
         </body>
       </html>
     `);
-  
     nuevaVentana.document.close();
+
+    nuevaVentana.addEventListener('beforeunload', function () {
+      console.log("He cerrado la pagina");
+  
+      // Lógica a ejecutar al cerrar la ventana
+      storedUser = localStorage.getItem("correoUsuario");
+      users = JSON.parse(storedUser);
+      agregarUsuario(
+        users.nombreUsuario,
+        users.nombre,
+        users.apellidos,
+        users.email,
+        users.edad,
+        users.ciudad,
+        users.password,
+        users.favoritos,
+        users.comprado
+      );
+    });
+
+
+    // console.log("He cerrado la pagina")
+    // storedUser = localStorage.getItem("correoUsuario");
+    // users = JSON.parse(storedUser)
+    // agregarUsuario(users.nombreUsuario,
+    //   users.nombre,users.apellidos,users.
+    //   email,users.edad,users.ciudad,users.password,users.favoritos,
+    //   users.comprado)
+
   }
+  
   
 
 
@@ -592,6 +651,7 @@ export class PokemonController {
     `);
 
     nuevaVentana.document.close();
+    
 
   }
 
