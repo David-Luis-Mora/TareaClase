@@ -175,7 +175,7 @@ async function login(event) {
       console.log("Login aceptado");
 
      
-      localStorage.setItem("correoUsuario", correoUsuario);
+      localStorage.setItem("correoUsuario", JSON.stringify(correoUsuario));
       console.log(correoUsuario)
 
     }else{
