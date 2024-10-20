@@ -107,10 +107,13 @@ export class PokemonController {
     document
       .querySelector("#btnComprar")
       .addEventListener("click", this.añadirListaCompra.bind(this));
-    
-    // document
-    //   .querySelector("#btnComprar")
-    //   .addEventListener("click", this.mostrarListaDeseo.bind(this));
+
+    document
+      .querySelector("#btnVerLista")
+      .addEventListener("click", this.verListaDeseo.bind(this));
+
+    document.querySelector("#btnVerCompra")
+    .addEventListener("click", this.verListaCompra.bind(this));
 
     // Bind Cards pokemons
     this.cardPokemons = document.querySelectorAll(".card");
@@ -282,8 +285,321 @@ export class PokemonController {
     }
   }
 
+
+
+
+
+  verListaDeseo() {
+    console.log("Funciona");
+    let storedUser = localStorage.getItem("correoUsuario");
+    let users = JSON.parse(storedUser);
+  
+    console.log(users);
+  
+    let nuevaVentana = window.open("", "_blank");
+  
+    // Función para generar la tabla HTML, ahora dentro del script de la nueva ventana
+    let tablaHTML = `
+      <table border="1">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Precio</th>
+            <th>Acción</th>
+          </tr>
+        </thead>
+        <tbody id="tabla-contenedor">`;
+  
+    for (let j = 0; j < users.favoritos.length; j++) {
+      let registro = users.favoritos[j];
+      let claves = Object.keys(registro).length;
+      for (let k = 0; k < claves; k++) {
+        tablaHTML += `
+        <tr>
+          <td>${users.favoritos[j][k].id}</td>
+          <td>${users.favoritos[j][k].name}</td>
+          <td>${users.favoritos[j][k].price}</td>
+          <td><button class="borrar-btn" id="${users.favoritos[j][k].id}">Borrar</button></td>
+        </tr>`;
+      }
+    }
+  
+    tablaHTML += `
+        </tbody>
+      </table>`;
+  
+    nuevaVentana.document.write(`
+      <html>
+        <head>
+          <title>Tabla Dinámica</title>
+        </head>
+        <body>
+          <h1>Lista de Favoritos</h1>
+          <div id="tabla-contenedor">
+            ${tablaHTML}
+          </div>
+          <script>
+            // Función para regenerar la tabla HTML
+            function generarTablaHTML(users) {
+              let tablaHTML = '';
+              for (let j = 0; j < users.favoritos.length; j++) {
+                let registro = users.favoritos[j];
+                let claves = Object.keys(registro).length;
+                for (let k = 0; k < claves; k++) {
+                  if (users.favoritos[j][k]) { // Verificar que el elemento exista
+                    tablaHTML += \`
+                    <tr>
+                      <td>\${users.favoritos[j][k].id}</td>
+                      <td>\${users.favoritos[j][k].name}</td>
+                      <td>\${users.favoritos[j][k].price}</td>
+                      <td><button class="borrar-btn" id="\${users.favoritos[j][k].id}">Borrar</button></td>
+                    </tr>\`;
+                  }
+                }
+              }
+              return tablaHTML;
+            }
+  
+            // Función para actualizar la tabla
+            function actualizarTabla() {
+              let tablaHTML = '';
+              let storedUser = localStorage.getItem("correoUsuario");
+              let users = JSON.parse(storedUser);
+              let nuevaTabla = generarTablaHTML(users);
+              document.getElementById('tabla-contenedor').innerHTML = "";
+              for (let j = 0; j < users.favoritos.length; j++) {
+                let registro = users.favoritos[j];
+                let claves = Object.keys(registro).length;
+                for (let k = 0; k < claves; k++) {
+                  if (users.favoritos[j][k]) { // Verificar que el elemento exista
+                    tablaHTML += \`
+                    <tr>
+                      <td>\${users.favoritos[j][k].id}</td>
+                      <td>\${users.favoritos[j][k].name}</td>
+                      <td>\${users.favoritos[j][k].price}</td>
+                      <td><button class="borrar-btn" id="\${users.favoritos[j][k].id}">Borrar</button></td>
+                    </tr>\`;
+                  }
+                }
+              }
+
+              borrarRegistro();
+            }
+  
+            // Función para borrar el registro
+            function borrarRegistro() {
+              document.querySelectorAll('.borrar-btn').forEach(button => {
+                button.addEventListener('click', function() {
+                  let ident = parseFloat(this.getAttribute('id'));
+                  let storedUser = localStorage.getItem("correoUsuario");
+                  let users = JSON.parse(storedUser);
+                  let pos = 0;
+                  let clave_aux = 0;
+                  
+                  // Buscar el elemento a eliminar
+                  for (let j = 0; j < users.favoritos.length; j++) {
+                    for (let clave in users.favoritos[j]) {
+                      if (users.favoritos[j][clave] && users.favoritos[j][clave].id == ident) {
+                        pos = j;
+                        clave_aux = clave;
+                      }
+                    }
+                  }
+                  
+                  // Eliminar el elemento
+                  delete users.favoritos[pos][clave_aux];
+                  localStorage.setItem("correoUsuario", JSON.stringify(users));
+                  
+                  // Actualizar la tabla en la ventana
+                  actualizarTabla();
+                });
+              });
+            }
+  
+            // Asignar eventos iniciales
+            borrarRegistro();
+          </script>
+        </body>
+      </html>
+    `);
+  
+    nuevaVentana.document.close();
+  }
+  
+
+
+
+
+
+  // verListaDeseo(){
+  //   console.log("Funciona")
+  //   let storedUser = localStorage.getItem("correoUsuario");
+  //   let users = JSON.parse(storedUser)
+
+  //   console.log(users)
+    
+
+  //   let nuevaVentana = window.open("", "_blank");
+
+  //   let tablaHTML = `
+  //     <table border="1">
+  //       <thead>
+  //         <tr>
+  //           <th>ID</th>
+  //           <th>Name</th>
+  //           <th>Precio</th>
+  //         </tr>
+  //       </thead>
+  //       <tbody>`;
+
+
+  //   for (let j = 0; j < users.favoritos.length; j++) {
+  //     let registro = users.favoritos[j];
+  //     let claves = Object.keys(registro).length;
+  //     for(let k =0; k < claves ; k++){
+  //       console.log(users.favoritos[j][k].id)
+  //       console.log(users.favoritos[j][k].name)
+  //       console.log(users.favoritos[j][k].price)
+  //       tablaHTML += `
+  //       <tr>
+  //         <td>${users.favoritos[j][k].id}</td>
+  //         <td>${ users.favoritos[j][k].name}</td>
+  //         <td>${ users.favoritos[j][k].price}</td>
+  //         <td><button class="borrar-btn" id="${users.favoritos[j][k].id}">Borrar</button></td>
+  //       </tr>`;
+  //     };
+  //   }
+
+  //   tablaHTML += `
+  //       </tbody>
+  //     </table>`;
+
+  //   nuevaVentana.document.write(`
+  //     <html>
+  //       <head>
+  //         <title>Tabla Dinámica</title>
+  //       </head>
+  //       <body>
+  //         <h1>Lista de Favoritos</h1>
+  //         ${tablaHTML}
+  //         <script>
+
+  //           function actualizarTabla() {
+  //             let tablaHTML = window.opener.generarTablaHTML(window.opener.users);
+  //             document.getElementById('tabla-contenedor').innerHTML = tablaHTML;
+
+  //             // Reasignar los eventos a los botones nuevamente
+  //             borrarRegistro;
+  //           }
+
+  //           function borrarRegistro(){
+  //             document.querySelectorAll('.borrar-btn').forEach(button => {
+  //               button.addEventListener('click', function() {
+  //                 let ident = parseFloat(this.getAttribute('id'));
+  //                 let storedUser = localStorage.getItem("correoUsuario");
+  //                 let users = JSON.parse(storedUser);
+  //                 let index = []
+  //                 pos  = 0
+  //                 clave_aux = 0
+  //                 for (let j = 0; j < users.favoritos.length; j++) {
+  //                   for (let clave in  users.favoritos[j]) {
+  //                     if( users.favoritos[j][clave].id == ident){
+  //                       console.log("Se encontro el pokemon")
+  //                       pos = j
+  //                       clave_aux = clave
+  //                     }
+  //                   }
+  //                 }
+  //                 console.log(users)
+  //                 for (let j = 0; j < users.favoritos.length; j++){
+  //                   delete users.favoritos[pos][clave_aux]
+  //                 }
+  //                 console.log(users)
+  //                 //localStorage.setItem("correoUsuario", JSON.stringify(users));
+  //                 actualizarTabla()
+  //               });
+  //             });
+  //           }
+  //           borrarRegistro()
+  //         </script>
+  //       </body>
+  //     </html>
+  //   `);
+
+  //   nuevaVentana.document.close();
+
+   
+      
+          
+
+
+
+  // }
+  verListaCompra(){
+    console.log("Funciona")
+    let storedUser = localStorage.getItem("correoUsuario");
+    let users = JSON.parse(storedUser)
+
+    console.log(users)
+
+    let nuevaVentana = window.open("", "_blank");
+
+    let tablaHTML = `
+      <table border="1">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Precio</th>
+          </tr>
+        </thead>
+        <tbody>`;
+
+
+    for (let j = 0; j < users.comprado.length; j++) {
+      let registro = users.comprado[j];
+      let claves = Object.keys(registro).length;
+      for(let k =0; k < claves ; k++){
+        console.log(users.comprado[j][k].id)
+        console.log(users.comprado[j][k].name)
+        console.log(users.comprado[j][k].price)
+        tablaHTML += `
+        <tr>
+          <td>${users.comprado[j][k].id}</td>
+          <td>${ users.comprado[j][k].name}</td>
+          <td>${ users.comprado[j][k].price}</td>
+        </tr>`;
+      };
+    }
+
+  
+
+    tablaHTML += `
+        </tbody>
+      </table>`;
+
+    nuevaVentana.document.write(`
+      <html>
+        <head>
+          <title>Tabla Dinámica</title>
+        </head>
+        <body>
+          <h1>Pokemon comprado</h1>
+          ${tablaHTML}
+        </body>
+      </html>
+    `);
+
+    nuevaVentana.document.close();
+
+  }
+
   
 }
+
+
+
 
 
 
