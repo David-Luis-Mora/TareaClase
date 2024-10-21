@@ -5,8 +5,8 @@
   <h1>Tareas</h1>
     <div>
       <a href="{% url 'tasks:task-done'%}"><button>Done</button></a>
-      <a href="{% url 'tasks:task-done'%}"><button>Pending</button></a>
-      <a href="{% url 'tasks:task-done'%}"><button>ADD</button></a>
+      <a href="{% url 'tasks:task-pendig'%}"><button>Pending</button></a>
+      <a href="{% url 'tasks:add-task'%}"><button>ADD</button></a>
     </div>
 
     {% comment %} {% for task in tasks %} {% endcomment %}

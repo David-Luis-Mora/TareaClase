@@ -27,12 +27,10 @@ def task_done(request):
 
 
 def task_pendig(request):
-    # num_tasks = Task.objects.count()
     tasks = Task.objects.all()
-    # print('Hola estoy en el home')
     return render(
         request,
-        'tasks/task_list.html',
+        'tasks/tasks_pending.html',
         {'tasks': tasks},
     )
 
