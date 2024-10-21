@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- <script src="jquery-3.7.1.min.js"> -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    </script>
+</head>
+<body>
+    <p>Hola mi primer ejercicio</p>
+    <div class="ejemplo">
+        <p>Ejemplo clase</p>
+
+    </div>
+    <div id="ejemplo">
+        <h2>Mi elemento</h2>
+        <p>Estoy con el id de atributo</p>
+    </div>
+    <button>Prueba</button>
+    <script>
+        $(document).ready(function(){
+        // jQuery methods go here...
+             // $("p").hide()
+            // $(".ejemplo").hide()
+            // $("#ejemplo").hide()
+            $("button").click(function(){
+                $("p").hide();
+            });
+            
+        });
+        console.log($("#ejemplo".innerHTML))
+
+    </script>
+    
+</body>
+</html>
