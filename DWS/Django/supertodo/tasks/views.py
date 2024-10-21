@@ -18,12 +18,10 @@ def task_list(request):
 
 
 def task_done(request):
-    # num_tasks = Task.objects.count()
     tasks = Task.objects.all()
-    # print('Hola estoy en el home')
     return render(
         request,
-        'tasks/task_list.html',
+        'tasks/task_done.html',
         {'tasks': tasks},
     )
 

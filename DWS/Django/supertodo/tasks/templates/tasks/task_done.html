@@ -1,0 +1,19 @@
+{% extends "tasks/base.html" %}
+{% block title %}Tareas Pendientes{% endblock title %}
+
+{% block body %}
+{% for task in tasks %}
+  {% if task.done%}
+    <div>
+      <h1>{{task.name}}</h1>
+      <p>{{task.description}}</p>
+      <p>{{complete_before}}</p>
+      <p>{{created_at}}</p>
+      <p>{{updated_at}}</p>
+    </div>
+  {% endif %}
+  
+{% endfor %}
+  
+  
+{% endblock body %}

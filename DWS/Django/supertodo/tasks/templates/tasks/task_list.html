@@ -3,13 +3,13 @@
 
 {% block body %}
   <h1>Tareas</h1>
-  {% comment %} <button href="{% url 'tasks:add_task' task.slug %}">Agregar</button>
-  <button href="{% url 'tasks:task_detail' task.slug %}">Hechas</button>
-  <button href="{% url 'tasks:task_detail' task.slug %}">pendiente</button> {% endcomment %}
-  {% comment %} <h1>Funciona</h1> {% endcomment %}
-  {% comment %} <a class="button" href="{% url 'blog:add-post' %}">Add new post</a> {% endcomment %}
+    <div>
+      <a href="{% url 'tasks:task-done'%}"><button>Done</button></a>
+      <a href="{% url 'tasks:task-done'%}"><button>Pending</button></a>
+      <a href="{% url 'tasks:task-done'%}"><button>ADD</button></a>
+    </div>
 
-    {% for task in tasks %}
+    {% comment %} {% for task in tasks %} {% endcomment %}
     <div>
       <p>{{ task.name }}</p>
       <button>Cambiar</button>
@@ -20,7 +20,6 @@
  
 
     {% comment %} <p><a href="{% url 'tasks:task_detail' task.slug %}">[Read more]</a></p> {% endcomment %}
-    {% endfor %}
 
  
  
