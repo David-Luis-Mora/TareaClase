@@ -27,8 +27,9 @@ def task_list(request):
 
 
 def task_detail(request, task_slug: str):
+    # task = Task.objects.all()
     task = Task.objects.get(slug=task_slug)
-    return render(request, 'tasks/task_detail.html', dict(post=task))
+    return render(request, 'tasks/task_detail.html', dict(task=task))
 
 
 def task_done(request):

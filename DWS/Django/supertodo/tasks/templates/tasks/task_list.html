@@ -11,8 +11,8 @@
     
       {% for task in pending_tasks %}
       <div>
-        <a href="{% url 'tasks:task-detail' task.slug%}"><h1>{{task.name}}</h1></a>
-        <p>{{task.description}}</p>
+        <a href="{% url 'tasks:task-detail' task.slug %}">{{task.name}}</a>
+        {% comment %} <p>{{task.description}}</p> {% endcomment %}
         {% comment %} <p>Tiempo para poder hacerlo: {{task.complete_before}}</p>
         <p>Fecha de creacion: {{task.created_at}}</p>
         <p>Ultima actualizacion: {{task.updated_at}}</p> {% endcomment %}
@@ -24,7 +24,7 @@
       {% for task in completed_tasks %}
       <div>
         <h1>{{task.name}}</h1>
-        <p>{{task.description}}</p>
+        {% comment %} <p>{{task.description}}</p> {% endcomment %}
         {% comment %} <p>Tiempo para poder hacerlo: {{task.complete_before}}</p>
         <p>Fecha de creacion: {{task.created_at}}</p>
         <p>Ultima actualizacion: {{task.updated_at}}</p> {% endcomment %}
