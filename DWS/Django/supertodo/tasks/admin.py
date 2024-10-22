@@ -5,8 +5,8 @@ from .models import Task
 
 
 class TaskAdmin(admin.ModelAdmin):
-    # list_display = ['title', 'slug', 'description', 'time_finish']
-    # prepopulated_fields = {'slug': ['title']}
+    list_display = ['name', 'slug', 'description','done', 'complete_before','created_at','updated_at',]
+    prepopulated_fields = {'slug': ['name']}
     pass
 
 

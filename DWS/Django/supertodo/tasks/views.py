@@ -1,19 +1,24 @@
-from django.shortcuts import render
+from django.shortcuts import render,redirect
 
 # Create your views here.
 from tasks.models import Task
+from .forms import AddTaskForm
+from django.utils.text import slugify
 
 # from .forms import AddTaskForm
 
 
 def task_list(request):
-    # num_tasks = Task.objects.count()
-    tasks = Task.objects.all()
-    # print('Hola estoy en el home')
+    # tasks = Task.objects.all()
+    completed_tasks = Task.objects.filter(done=True)
+    pending_tasks = Task.objects.filter(done=False)
+    # print(len(tasks))
     return render(
         request,
         'tasks/task_list.html',
-        {'tasks': tasks},
+        {'completed_tasks': completed_tasks,
+         'pending_tasks': pending_tasks,
+        },
     )
 
 
@@ -37,35 +42,14 @@ def task_pendig(request):
 
 def add_task(request):
     pass
-    # if request.method == 'GET':
-    #     form = AddPostForm()
-    # else:
-    #     if (form := AddPostForm(data=request.POST)).is_valid():
-    #         post = form.save(commit=False)
-    #         post.slug = slugify(post.title)
-    #         post.save()
-    #         return redirect('blog:home')
-    # return render(request, 'blog/post/add.html', dict(form=form))
+    if request.method == 'GET':
+        task = AddTaskForm()
+    else:
+        if (task := AddTaskForm(data=request.POST)).is_valid():
+            task = task.save(commit=False)
+            task.slug = slugify(task.name)
+            task.done = False
+            task.save()
+            return redirect('tasks:task-list')
+    return render(request, 'tasks/add_task.html', dict(form=task))
 
-
-# def task_detail(request, task_slug):
-#     # print(f'Tiene sentido que {post_id}')
-#     task = Task.objects.get(slug=task_slug)
-#     # print(f'Tiene sentido que {post}')
-#     return render(request, 'tasks/task_detail.html', dict(task=task))
-
-
-# def add_task(request):
-#     if request.method == 'POST':
-#         if (task := AddTaskForm(request.POST)).is_valid():
-#             task = task.save(commit=False)
-#             task.slug = slugify(task.title)
-#             task.save()
-#             return redirect('tasks:home')
-
-#     else:
-#         print('Funciona')
-#         # print(reques)
-#         task = AddTaskForm()
-
-#     return render(request, 'tasks/add_task.html', dict(form=task))
