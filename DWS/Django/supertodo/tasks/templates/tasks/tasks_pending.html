@@ -2,6 +2,18 @@
 {% block title %}Tareas Pendientes{% endblock title %}
 
 {% block body %}
+{% for task in tasks %}
+<div>
+  <h1>{{task.name}}</h1>
+  <p>{{task.description}}</p>
+  {% comment %} <p>Tiempo para poder hacerlo: {{task.complete_before}}</p>
+  <p>Fecha de creacion: {{task.created_at}}</p>
+  <p>Ultima actualizacion: {{task.updated_at}}</p> {% endcomment %}
+  <button>Cambiar</button>
+  <button>Editar</button>
+  <button>Eliminar</button>
+</div>
+{% endfor %}
   
   <a href="{% url 'tasks:task-list'%}"><button>Volver</button></a>
 {% endblock body %}

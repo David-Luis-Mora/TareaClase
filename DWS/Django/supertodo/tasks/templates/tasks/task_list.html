@@ -8,53 +8,55 @@
       <a href="{% url 'tasks:task-pendig'%}"><button>Pending</button></a>
       <a href="{% url 'tasks:add-task'%}"><button>ADD</button></a>
     </div>
-
-    <!-- {% for task in tasks %}
-    {% if task.done%}
+    
+      {% for task in pending_tasks %}
+      <div>
+        <a href="{% url 'tasks:task-detail task.slug'%}"><h1>{{task.name}}</h1></a>
+        <p>{{task.description}}</p>
+        {% comment %} <p>Tiempo para poder hacerlo: {{task.complete_before}}</p>
+        <p>Fecha de creacion: {{task.created_at}}</p>
+        <p>Ultima actualizacion: {{task.updated_at}}</p> {% endcomment %}
+        <button>Cambiar</button>
+        <button>Editar</button>
+        <button>Eliminar</button> 
+      </div>
+      {% endfor %}
+      {% for task in completed_tasks %}
       <div>
         <h1>{{task.name}}</h1>
         <p>{{task.description}}</p>
-        <p>{{task.complete_before}}</p>
-        <p>{{task.created_at}}</p>
-        <p>{{task.updated_at}}</p>
-        <div>
-          <button>Cambiar</button>
-          <button>Editar</button>
-          <button>Eliminar</button>
-        </div>
+        {% comment %} <p>Tiempo para poder hacerlo: {{task.complete_before}}</p>
+        <p>Fecha de creacion: {{task.created_at}}</p>
+        <p>Ultima actualizacion: {{task.updated_at}}</p> {% endcomment %}
+        <button>Cambiar</button>
+        <button>Editar</button>
+        <button>Eliminar</button>
       </div>
-    {% endif %}
-    {% endfor %} -->
-
-    {% for task in pending_tasks %}
+      {% endfor %}
+    
+   
       <div>
-        <h1>{{task.name}}</h1>
-        <p>{{task.description}}</p>
-        <p>{{task.complete_before}}</p>
-        <p>{{task.created_at}}</p>
-        <p>{{task.updated_at}}</p>
-        <div>
-          <button>Cambiar</button>
-          <button>Editar</button>
-          <button>Eliminar</button>
-        </div>
-      </div>
-    {% endfor %}
-
-    {% for task in completed_tasks %}
+        
       <div>
-        <h1>{{task.name}}</h1>
-        <p>{{task.description}}</p>
-        <p>{{task.complete_before}}</p>
-        <p>{{task.created_at}}</p>
-        <p>{{task.updated_at}}</p>
-        <div>
-          <button>Cambiar</button>
-          <button>Editar</button>
-          <button>Eliminar</button>
+         
         </div>
       </div>
-    {% endfor %}
+    
+
+    {% comment %} {% for task in completed_tasks %}
+    <div>
+      <h1>{{task.name}}</h1>
+      <p>{{task.description}}</p>
+      <p>{{task.complete_before}}</p>
+      <p>{{task.created_at}}</p>
+      <p>{{task.updated_at}}</p>
+      <div>
+        <button>Cambiar</button>
+        <button>Editar</button>
+        <button>Eliminar</button>
+      </div>
+    </div>
+    {% endfor %} {% endcomment %}
  
 
     {% comment %} <p><a href="{% url 'tasks:task_detail' task.slug %}">[Read more]</a></p> {% endcomment %}

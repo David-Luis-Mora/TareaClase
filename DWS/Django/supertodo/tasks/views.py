@@ -1,9 +1,10 @@
-from django.shortcuts import render,redirect
+from django.shortcuts import redirect, render
+from django.utils.text import slugify
 
 # Create your views here.
 from tasks.models import Task
+
 from .forms import AddTaskForm
-from django.utils.text import slugify
 
 # from .forms import AddTaskForm
 
@@ -13,17 +14,25 @@ def task_list(request):
     completed_tasks = Task.objects.filter(done=True)
     pending_tasks = Task.objects.filter(done=False)
     # print(len(tasks))
+    # for j in completed_tasks:
+    #     print(j.complete_before)
     return render(
         request,
         'tasks/task_list.html',
-        {'completed_tasks': completed_tasks,
-         'pending_tasks': pending_tasks,
+        {
+            'completed_tasks': completed_tasks,
+            'pending_tasks': pending_tasks,
         },
     )
 
 
+def task_detail(request, task_slug):
+    task = Task.objects.get(slug=task_slug)
+    return render(request, 'tasks/task_detail.html', dict(post=task))
+
+
 def task_done(request):
-    tasks = Task.objects.all()
+    tasks = Task.objects.filter(done=True)
     return render(
         request,
         'tasks/task_done.html',
@@ -32,7 +41,8 @@ def task_done(request):
 
 
 def task_pendig(request):
-    tasks = Task.objects.all()
+    tasks = Task.objects.filter(done=False)
+
     return render(
         request,
         'tasks/tasks_pending.html',
@@ -53,3 +63,14 @@ def add_task(request):
             return redirect('tasks:task-list')
     return render(request, 'tasks/add_task.html', dict(form=task))
 
+
+def task_toggle(request):
+    pass
+
+
+def task_edit(request):
+    pass
+
+
+def task_delete(request):
+    pass

@@ -3,16 +3,13 @@
 
 {% block body %}
 {% for task in tasks %}
-  {% if task.done%}
-    <div>
-      <h1>{{task.name}}</h1>
-      <p>{{task.description}}</p>
-      <p>{{complete_before}}</p>
-      <p>{{created_at}}</p>
-      <p>{{updated_at}}</p>
-    </div>
-  {% endif %}
-  
+<div>
+  <h1>{{task.name}}</h1>
+  <p>{{task.description}}</p>
+  <p>Tiempo para poder hacerlo: {{task.done}}</p>
+  <p>Fecha de creacion: {{task.complete_before}}</p>
+  <p>Ultima actualizacion: {{task.updated_at}}</p>
+</div>
 {% endfor %}
 <a href="{% url 'tasks:task-list'%}"><button>Volver</button></a>
   
