@@ -14,8 +14,8 @@ def task_list(request):
     completed_tasks = Task.objects.filter(done=True)
     pending_tasks = Task.objects.filter(done=False)
     # print(len(tasks))
-    # for j in completed_tasks:
-    #     print(j.complete_before)
+    for j in completed_tasks:
+        print(j.slug)
     return render(
         request,
         'tasks/task_list.html',
@@ -26,7 +26,7 @@ def task_list(request):
     )
 
 
-def task_detail(request, task_slug):
+def task_detail(request, task_slug: str):
     task = Task.objects.get(slug=task_slug)
     return render(request, 'tasks/task_detail.html', dict(post=task))
 
