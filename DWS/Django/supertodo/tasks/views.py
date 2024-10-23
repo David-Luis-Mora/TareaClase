@@ -6,7 +6,7 @@ from tasks.models import Task
 
 from .forms import AddTaskForm
 
-# from .forms import AddTaskForm
+
 
 
 def task_list(request):
@@ -79,21 +79,23 @@ def task_edit(request,task_slug: str):
     task = Task.objects.get(slug=task_slug)
 
     if request.method == 'POST':
-        # Si es POST, procesamos los datos enviados en el formulario
         form = AddTaskForm(request.POST, instance=task)
         if form.is_valid():
-            form.save()  # Guardamos los cambios en la tarea
-            return redirect('tasks:task-list')  # Redirigir a la lista de tareas (o a otra vista)
+            form.save()
+            return redirect('tasks:task-list')
     else:
-        # Si es GET, mostramos el formulario con los datos actuales de la tarea
+        
         form = AddTaskForm(instance=task)
     
     return render(request, 'tasks/task_edit.html', {'form': form, 'task': task})
 
-    pass
+    
 
 
 def task_delete(request,task_slug: str):
     task = Task.objects.get(slug=task_slug)
-    task.delete()
-    return render(request, 'tasks/task_delete.html')
+    if request.method == "POST":
+        task.delete()
+        return redirect('tasks:task-list')
+
+    return render(request, 'tasks/task_delete.html', {'task': task})

@@ -1,12 +1,14 @@
 {% extends "tasks/base.html" %}
-{% block title %}Detalle de la Tarea{% endblock title %}
+
+{% block title %}Eliminar Tarea{% endblock title %}
 
 {% block body %}
-
-<h1>Tarea Eliminada</h1>
-
-
-<a href="{% url 'tasks:task-list'%}"><button>Volver</button></a>
-   
+  <h1>Eliminar Tarea</h1>
+  <p>¿Estás seguro de que deseas eliminar la tarea "{{ task.name }}"?</p>
   
+  <form method="POST">
+    {% csrf_token %}
+    <button type="submit">Eliminar</button>
+    <a href="{% url 'tasks:task-list' %}"><button type="button">Cancelar</button></a>
+  </form>
 {% endblock body %}
