@@ -2,12 +2,23 @@
 {% block title %}Detalle de la Tarea{% endblock title %}
 
 {% block body %}
-<h1>{{ task.title }}</h1>
+
+<h1>Detalles de la Tarea</h1>
+
+  <p><strong>Nombre:</strong> {{ task.name }}</p>
+  <p><strong>Slug:</strong> {{ task.slug }}</p>
+  <p><strong>Descripción:</strong> {{ task.description }}</p>
+  <p><strong>Completada:</strong> {{ task.done|yesno:"Sí,No" }}</p>
+  <p><strong>Fecha límite:</strong> {{ task.complete_before|date:"d M Y H:i" }}</p>
+  <p><strong>Creada en:</strong> {{ task.created_at|date:"d M Y H:i" }}</p>
+  <p><strong>Última actualización:</strong> {{ task.updated_at|date:"d M Y H:i" }}</p>
+
+<!-- <h1>{{ task.title }}</h1>
 <span class="badge text-bg-secondary mb-3">
   <i class="bi bi-pen"></i>
   {{ task.created_at }}
 </span>
-<p>{{ post.content }}</p>
+<p>{{ post.content }}</p> -->
 
 <a href="{% url 'tasks:task-list'%}"><button>Volver</button></a>
   
