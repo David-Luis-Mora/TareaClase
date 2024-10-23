@@ -1,0 +1,17 @@
+{% extends "tasks/base.html" %}
+{% block title %}Detalle de la Tarea{% endblock title %}
+
+{% block body %}
+
+<h1>Crear nuevo post</h1>
+  <form method="post" novalidate>
+    {% csrf_token %}
+    {{ form }}
+  <button type="submit">
+    <p>Guardar</p>
+  </button>
+  </form>
+  <a href="{% url 'tasks:task-list'%}"><button>Cancelar</button></a>
+  
+  
+{% endblock body %}

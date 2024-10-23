@@ -49,6 +49,7 @@ def test_list_all_tasks(client: Client):
         assertContains(response, DETAIL_URL.format(slug=task.slug))
         assertContains(response, TOGGLE_URL.format(slug=task.slug))
         assertContains(response, EDIT_URL.format(slug=task.slug))
+        # print(response,"////",DELETE_URL.format(slug=task.slug))
         assertContains(response, DELETE_URL.format(slug=task.slug))
 
 
@@ -148,6 +149,8 @@ def test_edit_task_with_post_method(client: Client, task):
     assert response.status_code in [200, 302]
     edited_task = Task.objects.get(pk=task.pk)
     assert edited_task.name == form_task.name
+    # print(f'Pirmer resultado:  {edited_task.slug}')
+    # print(f'Sefundo resultado: {slugify(form_task.name)}')
     assert edited_task.slug == slugify(form_task.name)
     assert edited_task.description == form_task.description
     assert edited_task.done == form_task.done
