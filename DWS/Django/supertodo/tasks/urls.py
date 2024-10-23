@@ -11,7 +11,7 @@ urlpatterns = [
     path('done/', views.task_done, name='task-done'),
     path('pending/', views.task_pendig, name='task-pendig'),
     path('add/', views.add_task, name='add-task'),
-    path('task/<post_slug>/toggle/', views.task_toggle, name='task-toggle'),
-    path('task/<post_slug>/edit/', views.task_edit, name='task-edit'),
-    path('task/<post_slug>/delete/', views.task_delete, name='task-delete'),
+    path('task/<slug:task_slug>/toggle/', views.task_toggle, name='task-toggle'),
+    path('task/<slug:task_slug>/edit/', views.task_edit, name='task-edit'),
+    path('task/<slug:task_slug>/delete/', views.task_delete, name='task-delete'),
 ]
