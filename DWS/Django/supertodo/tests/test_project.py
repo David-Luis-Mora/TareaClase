@@ -49,7 +49,7 @@ def test_list_all_tasks(client: Client):
         assertContains(response, DETAIL_URL.format(slug=task.slug))
         assertContains(response, TOGGLE_URL.format(slug=task.slug))
         assertContains(response, EDIT_URL.format(slug=task.slug))
-        print(response,"////",DELETE_URL.format(slug=task.slug))
+        # print(response,"////",DELETE_URL.format(slug=task.slug))
         assertContains(response, DELETE_URL.format(slug=task.slug))
 
 
