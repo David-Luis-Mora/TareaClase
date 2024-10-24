@@ -109,29 +109,81 @@
             puerta...</p>
 
         <script>
-        // Ejercicio 1: Evento .click()
+            $(document).ready(function() {
+                
+                // Ejercicio 1: Evento .click()
+                $("#entrar").click(function() {
+                    $("#mensaje").show();
+                    $("#entrar").hide();
+                    $("#atras").show();
+                });
 
+                $("#atras").click(function() {
+                    $("#mensaje").hide();
+                    $("#entrar").show();
+                    $("#atras").hide();
+                });
 
-        // Ejercicio 2: Evento .dblclick()
+                // Ejercicio 2: Evento .dblclick()
+                $("#agua").dblclick(function() {
+                    $(this).text("El espíritu atrapado se refleja en el agua...");
+                });
 
+                // Ejercicio 3: Evento .hover()
+                $("#sombras").hover(
+                    function() {
+                        $(this).css("color", "#111"); // Más oscuro al pasar el mouse
+                    },
+                    function() {
+                        $(this).css("color", "#f4f4f4"); // Vuelve al color original
+                    }
+                );
 
-        // Ejercicio 3: Evento .hover()
+                // Ejercicio 4: Eventos .focus() y .blur()
+                $("#ojo").focus(function() {
+                    $("#ojo-img").attr("src", "./img/ojo-abierto.jpg");
+                });
 
+                $("#ojo").blur(function() {
+                    $("#ojo-img").attr("src", "./img/ojo-cerrado.jpg");
+                });
 
-        // Ejercicio 4: Eventos .focus() y .blur()
+                // Ejercicio 5: Evento .change()
+                $("#paisaje").change(function() {
+                    let opcion = $(this).val();
+                    if (opcion === "dia") {
+                        $("#paisaje-img").attr("src", "./img/paisaje-dia.JPG");
+                    } else {
+                        $("#paisaje-img").attr("src", "./img/paisaje-noche.JPG");
+                    }
+                });
 
+                // Ejercicio 6: Evento .submit()
+                $("#invocacion").submit(function(event) {
+                    event.preventDefault(); // Evitar que la página se recargue
+                    $("#resultado-invocacion").show();
+                });
 
-        // Ejercicio 5: Evento .change()
+                // Ejercicio 7: Eventos .keydown() y .keyup()
+                $("#voces").keydown(function() {
+                    let texto = $(this).val();
+                    $("#voces-resultado").text(texto);
+                });
 
+                $("#voces").keyup(function() {
+                    $("#voces-resultado").text("");
+                });
 
-        // Ejercicio 6: Evento .submit()
- 
-
-        // Ejercicio 7: Eventos .keydown() y .keyup()
-
-
-        // Ejercicio 8: Evento .keypress()
-
+                // Ejercicio 8: Evento .keypress()
+                $("#puerta-destino").keypress(function(event) {
+                    let tecla = event.which;
+                    if (tecla === 13) { // La tecla "Enter"
+                        $(this).text("¡Has encontrado la salida del bosque!");
+                    } else {
+                        $(this).text("Intentando abrir la puerta...");
+                    }
+                });
+            });
     </script>
     </body>
 </html>
