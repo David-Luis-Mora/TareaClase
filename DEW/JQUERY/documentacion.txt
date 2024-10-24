@@ -1,0 +1,149 @@
+
+
+Ejercicio 4
+
+$(document).ready(): Se utiliza para ejecutar una función cuando el DOM está completamente cargado. Esto asegura que el código dentro de la función no se ejecute hasta que todos los elementos del HTML estén listos.
+
+Documentación: jQuery .ready()
+.attr(): Este método se utiliza para obtener o establecer el valor de un atributo en el elemento seleccionado.
+
+Documentación: jQuery .attr()
+.text(): Este método se utiliza para obtener o establecer el contenido de texto de los elementos seleccionados.
+
+Documentación: jQuery .text()
+.removeClass(): Este método se utiliza para eliminar una o más clases de los elementos seleccionados.
+
+Documentación: jQuery .removeClass()
+.click(): Este método se utiliza para asignar una función que se ejecutará cuando el elemento seleccionado sea clicado.
+
+Documentación: jQuery .click()
+.append(): Este método se utiliza para insertar contenido al final de los elementos seleccionados.
+
+Documentación: jQuery .append()
+.prepend(): Este método se utiliza para insertar contenido al principio de los elementos seleccionados.
+
+Documentación: jQuery .prepend()
+.before(): Este método se utiliza para insertar contenido antes de los elementos seleccionados.
+
+Documentación: jQuery .before()
+.after(): Este método se utiliza para insertar contenido después de los elementos seleccionados.
+
+Documentación: jQuery .after()
+.empty(): Este método se utiliza para eliminar todos los elementos hijos de los elementos seleccionados.
+
+Documentación: jQuery .empty()
+.filter(): Este método se utiliza para filtrar los elementos seleccionados en función de una función que se pasa como argumento.
+
+Documentación: jQuery .filter()
+.remove(): Este método se utiliza para eliminar los elementos seleccionados del DOM.
+
+Documentación: jQuery .remove()
+.toggleClass(): Este método se utiliza para alternar entre añadir y eliminar una clase en los elementos seleccionados.
+
+Documentación: jQuery .toggleClass()
+
+
+Ejercicio 5
+
+$(document).ready(): Este método se utiliza para ejecutar una función una vez que el DOM está completamente cargado y listo para ser manipulado.
+
+Documentación: jQuery .ready()
+.click(): Se utiliza para asignar una función que se ejecutará cuando el elemento seleccionado sea clicado.
+
+Documentación: jQuery .click()
+.val(): Este método se utiliza para obtener o establecer el valor de un elemento de formulario (como un campo de entrada).
+
+Documentación: jQuery .val()
+.trim(): Este método se utiliza para eliminar los espacios en blanco de una cadena al principio y al final.
+
+Documentación: JavaScript String.prototype.trim() (Nota: .trim() es un método de JavaScript, no de jQuery, pero se utiliza comúnmente junto con jQuery)
+.append(): Este método se utiliza para insertar contenido al final de los elementos seleccionados.
+
+Documentación: jQuery .append()
+.siblings(): Este método se utiliza para obtener los hermanos del elemento seleccionado (es decir, los elementos que están en el mismo nivel en el DOM).
+
+Documentación: jQuery .siblings()
+.remove(): Este método se utiliza para eliminar los elementos seleccionados del DOM.
+
+Documentación: jQuery .remove()
+prompt(): Este es un método de JavaScript que se utiliza para mostrar un cuadro de diálogo que solicita al usuario que ingrese información.
+
+Documentación: JavaScript window.prompt()
+.empty(): Este método se utiliza para eliminar todos los elementos hijos de los elementos seleccionados.
+
+Documentación: jQuery .empty()
+Si necesitas más información sobre alguna función en particular o más ejemplos, ¡avísame!
+
+
+Ejercicio 6
+
+.click(): Se utiliza para asignar una función que se ejecutará cuando el elemento seleccionado sea clicado.
+
+Documentación: jQuery .click()
+.show(): Este método se utiliza para mostrar elementos ocultos.
+
+Documentación: jQuery .show()
+.hide(): Este método se utiliza para ocultar elementos.
+
+Documentación: jQuery .hide()
+.dblclick(): Se utiliza para asignar una función que se ejecutará cuando el elemento seleccionado sea doble clicado.
+
+Documentación: jQuery .dblclick()
+.hover(): Este método se utiliza para manejar los eventos de pasar el mouse sobre un elemento, permitiendo ejecutar una función cuando el mouse entra y otra cuando sale.
+
+Documentación: jQuery .hover()
+.focus(): Este método se utiliza para asignar una función que se ejecutará cuando el elemento seleccionado reciba el foco.
+
+Documentación: jQuery .focus()
+.blur(): Este método se utiliza para asignar una función que se ejecutará cuando el elemento seleccionado pierde el foco.
+
+Documentación: jQuery .blur()
+.change(): Este método se utiliza para asignar una función que se ejecutará cuando el valor de un elemento de formulario cambie.
+
+Documentación: jQuery .change()
+.submit(): Este método se utiliza para asignar una función que se ejecutará cuando un formulario se envíe.
+
+Documentación: jQuery .submit()
+event.preventDefault(): Este método se utiliza para evitar el comportamiento por defecto de un evento (como recargar la página al enviar un formulario).
+
+Documentación: jQuery event.preventDefault()
+.keydown(): Se utiliza para asignar una función que se ejecutará cuando se presione una tecla mientras el elemento seleccionado tiene el foco.
+
+Documentación: jQuery .keydown()
+.keyup(): Se utiliza para asignar una función que se ejecutará cuando se suelte una tecla mientras el elemento seleccionado tiene el foco.
+
+Documentación: jQuery .keyup()
+.keypress(): Se utiliza para asignar una función que se ejecutará cuando se presione una tecla (aunque es menos común y ha sido reemplazada en muchos casos por .keydown() y .keyup()).
+
+Documentación: jQuery .keypress()
+
+
+
+
+
+
+Ejercicio 7
+
+jQuery .on(): Este método se utiliza para manejar eventos en jQuery. Puedes ver la documentación aquí:
+jQuery .on()
+
+jQuery .show(): Este método se usa para mostrar elementos que están ocultos. La documentación está disponible aquí:
+jQuery .show()
+
+jQuery .hide(): Este método se usa para ocultar elementos en la página. La documentación está aquí:
+jQuery .hide()
+
+jQuery .fadeOut(): Este método permite desvanecer elementos de manera gradual. Puedes encontrar la documentación aquí:
+jQuery .fadeOut()
+
+jQuery .slideUp() y .slideDown(): Estos métodos permiten ocultar o mostrar elementos con una animación de deslizamiento. Aquí están las documentaciones:
+
+jQuery .slideUp()
+jQuery .slideDown()
+jQuery .trigger(): Este método se utiliza para disparar eventos en los elementos. La documentación está aquí:
+jQuery .trigger()
+
+jQuery .preventDefault(): Este método se utiliza para prevenir el comportamiento por defecto de un evento. La documentación está aquí:
+jQuery .preventDefault()
+
+ jQuery API Documentation
