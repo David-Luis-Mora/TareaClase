@@ -130,63 +130,113 @@
         <script>
 			$(document).ready(function(){
 				// Ejercicio 1
+                $("#batsignal").attr("src", "./img/new-batsignal.jpg");
+
 				
 				
 				// Ejercicio 2
+                $("#batcomputer2").text("Escaneo completo. Todo seguro.");
+
 				
 
 				// Ejercicio 3
+                $("#batmobile-status").text("Estado: En movimiento.");
+
 				
 
 				// Ejercicio 4
+                $("#batman4").text("Batman está en modo sigiloso.");
+
 				
 
 				// Ejercicio 5
+                $("#batman5").removeClass("sigiloso");
+
 				
 
 				// Ejercicio 6
+                $("#batman6").click(function(){
+                    let text = $(this).text() === "Batman está en modo normal." ? "Batman está en modo detective." : "Batman está en modo normal.";
+                    $(this).text(text);
+                });
+
 				
 
 				// Ejercicio 7
+                $("#villains").append("<li>Hiedra Venenosa</li>");
+
 				
 				
 				// Ejercicio 8
+                $("#allies8").prepend("<li>Catwoman</li>");
+
 				
 
 				// Ejercicio 9
+                $("#batcomputer9").before("<p>Aviso: El sistema está bajo vigilancia.</p>");
+
 				
 
 				// Ejercicio 10
+                $("#batcomputer10").after("<p>Alerta: Hay actividad sospechosa en Gotham.</p>");
+
 				
 	
 				// Ejercicio 11
+                $("#captured-villains").empty();
+
 				
 	
 				// Ejercicio 12
+                $("#gadgets12 li").filter(function(){
+                    return $(this).text() === "Batimóvil";
+                }).remove();
+
 				
 
 				// Ejercicio 13
+                $("#batcave-link").attr("href", "new_batcave_url.html");
+
 				
 
 				// Ejercicio 14
+                $("#report").text("Nuevo reporte: El Joker ha sido avistado en Gotham.");
+
 				
 
 				// Ejercicio 15
+                $("#batmobile-alert").text("Alerta: Problema detectado en el motor.");
+
 				
 
 				// Ejercicio 16
+                $("#bat-report").prepend("<p>Advertencia: Anomalías detectadas en el escaneo.</p>");
+
 				
 
 				// Ejercicio 17
+                $("#security-report").click(function(){
+                    $(this).toggleClass("seguro");
+                });
+
+                
 				
 				
 				// Ejercicio 18
+                $("#allies18").before("<p>Aviso: El equipo de apoyo está listo.</p>");
+
 				
 
 				// Ejercicio 19
+                $("#gadgets19").after("<p>Nota: Se necesitan más gadgets para la próxima misión.</p>");
+
 				
 	
 				// Ejercicio 20
+                $("#allies20 li").filter(function(){
+                    return $(this).text() === "Robin";
+                }).remove();
+
 				
 			});
 		</script>
